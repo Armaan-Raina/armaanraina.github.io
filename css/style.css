@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: #dddde3;
+  color: #1b1a1c;
+  margin: 0;
+  padding: 0 2rem;
+}
+
+header {
+  height: 60px;
+  background-color: #dddde3;
+}
+
+header nav ul {
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+  padding: 0 2rem;
+  height: 100%;
+}
+
+header nav ul li {
+  margin-right: 2rem;
+}
+
+header nav ul li a {
+  color: #1b1a1c;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+  color: #A0A0FF; /* Muted lavender-blue highlight */
+}
+
+/**************Home Page Styles*************/
+.home-container {
+  display: flex;
+  align-items: flex-start; 
+  gap: 1px;
+  background-color: #dddde3;
+}
+
+.home-text {
+  margin-left: 10%;
+  margin-top: 80px; 
+  width: 450px;
+}
+
+.pfp {
+  width: 400px;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  margin-left: 15rem;
+  margin-top: 80px;
+  border-radius: 0px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-left: 25%;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #dddde3;
+  border-radius: 50%;
+  color: #3a393b;
+  font-size: 24px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+#intro-text::after {
+  content: "|";
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in {
+  animation: fadeIn 5s ease forwards;
+}
+
+
+
+/* Platform-specific hover colors */
+.social-link:nth-child(1):hover { background-color: #0072b1; color: white; } /* LinkedIn */
+.social-link:nth-child(2):hover { background-color: #24292e; color: white; } /* GitHub */
+.social-link:nth-child(3):hover { background-color: #c5221f; color: white; } /* Email */
+
+/***********Project Page Styles**************/
+.all-projects {
+  display: flex;
+  gap: 3rem;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.project1, .project2, .project3, .project4, .project5 {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  margin: 2rem 4rem;
+  flex-wrap: wrap;
+}
+
+.project1-text, .project2-text, .project3-text, .project4-text, .project5-text {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  color: #1b1a1c;
+}
+
+.project1-image, .project2-image, .project3-image, .project4-image, .project5-image {
+  width: 500px;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.project3-image, .project4-image {
+  margin-left: 10rem;
+}
+
+.project4-image {
+  margin-left: 16rem;
+}
+
+.project4-text {
+  flex: 1 1 300px;
+  min-width: 300px;
+  max-width: 600px;
+}
+.project4-image {
+  flex-shrink: 1;
+  max-width: 500px;
+  height: auto;
+}
+
+
+/**************Interests Page Styles**************/
+.food, .photos {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.food::-webkit-scrollbar, .photos::-webkit-scrollbar {
+  display: none;
+}
+
+.food img, .photos img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.food img:hover, .photos img:hover {
+  transform: scale(1.03);
+}
+
+/**************Resume Page Styles**************/
+.resume-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  background-color: #dddde3;
+  scrollbar-width: none;
+}
+
+.resume-container::-webkit-scrollbar {
+  display: none;
+}
