@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>armaanraina</title>
+<link rel="stylesheet" href="css/style.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="interests.html">Interests</a></li>
+      <li><a href="resume.html">Resume</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section id="Home">
+    <div class="home-container">
+      <div class="home-text">
+        <h1 id="intro-text"></h1>
+         <p id="intro-body", class="hidden fade-in">
+           Welcome to my portfolio!
+          I'm a Computer Science and Statistics student headed into my third year at NC State University.
+           My curiousity about the human experience and how we can quantify the way our brain creates it has led me to explore neuroscience, 
+           statistics, and philosophy. I'm deeply interested in closed-loop brain-computer interface systems and their potential in theraputic
+           applications.
+           <br><br>
+           In my free time, I enjoy being outdoors, cooking (and eating), and have recently picked up more reading. If we share any common interests or you
+           have any questions about my work, I'd love to hear from you!
+         </p>
+      </div>
+      <img src="images/Headshot.jpg" alt="Profile Picture" class="pfp">
+    </div>
+  </section>
+  <div class="social-icons">
+  <a href="https://www.linkedin.com/in/armaanraina/" target="_blank" class="social-link">
+    <i class="fab fa-linkedin"></i>
+  </a>
+  <a href="https://github.com/Armaan-Raina" target="_blank" class="social-link">
+    <i class="fab fa-github"></i>
+  </a>
+  <a href="mailto:araina3@ncsu.edu" class="social-link">
+    <i class="fas fa-envelope"></i>
+  </a>
+</div>
+</main>
+<script>
+  const text = "Hi, I'm Armaan";
+  const textElement = document.getElementById("intro-text");
+  const bodyElement = document.getElementById("intro-body");
+  let index = 0;
+
+  function typeText() {
+    if (index < text.length) {
+      textElement.textContent += text.charAt(index);
+      index++;
+      setTimeout(typeText, 100);
+    } else {
+      // After typing is done, wait a bit, then fade in body text
+      setTimeout(() => {
+        bodyElement.classList.remove("hidden");
+        bodyElement.classList.add("fade-in");
+      }, 2000); // 0.5s delay before fade-in
+    }
+  }
+
+  window.onload = typeText;
+
+</script>
+</body>
+</html>

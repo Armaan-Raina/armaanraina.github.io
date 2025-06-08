@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Projects - Armaan Raina</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="interests.html">Interests</a></li>
+      <li><a href="resume.html">Resume</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section id="interests">
+    <div class="interests">
+      <h1>Food</h1>
+      <p>Here are some of the best things I've tried and cooked</p>
+      <div class="food">
+        <img src="images/hurst.webp" alt="Steak">
+        <img src="images/image.webp" alt="Hamachi">
+        <img src="images/tripdip.webp" alt="Large back">
+        <img src="images/dank.jpg" alt="The Dankery">
+        <img src="images/dumplings.webp" alt="Dumplings in St. Louis China Town">
+        <img src="images/inandout.webp" alt="Overrated">
+        <img src="images/mac.webp" alt="Mac and Cheese">
+        <img src="images/mex.webp" alt="Mexican Food">
+        <img src="images/noodles.webp" alt="Noodles">
+        <img src="images/ribeye.webp" alt="Yum">
+        <img src="images/pappys.webp" alt="Pappy's BBQ">
+        <img src="images/pchick.webp" alt="Golden Dragon Peanut Chicken">
+        <img src="images/picnic.webp" alt="Picnic">
+        <img src="images/pizza.webp" alt="First time trying gorgonzola">
+        <img src="images/pocohavana.webp" alt="Guava and Cheese Pastries">
+        <img src="images/shawarma.webp" alt="Shawarma">
+        <img src="images/sugarfire.webp" alt="Sugarfire BBQ">
+        <img src="images/youarewhatyoueat.webp" alt="She called me a jerk">
+        <img src="images/terrybs.webp" alt="Terry Black's BBQ">
+        <img src="images/tostadas.webp" alt="Tostadas in Tijuana">
+      </div>
+      <h1>Photography</h1>
+      <p>Some of my favorite pictures I've taken</p>
+      <div class="photos">
+          <img src="pics/align.webp" alt="align">
+          <img src="pics/bean.webp" alt="bean">
+          <img src="pics/blue.webp" alt="blue">
+          <img src="pics/bridge.webp" alt="bridge">
+          <img src="pics/canyon.webp" alt="canyon">
+          <img src="pics/coco.webp" alt="coco">
+          <img src="pics/cotton.webp" alt="cotton">
+          <img src="pics/falls.webp" alt="falls">
+          <img src="pics/farm.webp" alt="farm">
+          <img src="pics/grass.webp" alt="grass">
+          <img src="pics/history.webp" alt="history">
+          <img src="pics/layers.webp" alt="layers">
+          <img src="pics/mayanruins.webp" alt="mayan ruins">
+          <img src="pics/minifalls.webp" alt="mini falls">
+          <img src="pics/mountains.webp" alt="mountains">
+          <img src="pics/pink.webp" alt="pink">
+          <img src="pics/purple.webp" alt="purple">
+          <img src="pics/reflection.webp" alt="reflection">
+          <img src="pics/riverview.webp" alt="riverview">
+          <img src="pics/shiny.jpg" alt="shiny">
+          <img src="pics/spawnpoint.webp" alt="spawn point">
+          <img src="pics/water.webp" alt="water">
+          <img src="pics/whenIwasledtoyou.webp" alt="when I was led to you">
+          <img src="pics/wildwildwest.webp" alt="wild wild west">
+      </div>
+        <h1>More sections coming soon!</h1>
+    </div>       
+  </section>
+</main>
+<script>
+  const galleries = document.querySelectorAll('.food, .photos');
+
+  galleries.forEach(gallery => {
+    let scrollSpeed = 1.5; // Adjust speed here
+    function autoScroll() {
+      gallery.scrollLeft += scrollSpeed;
+      // Reset scroll to start for endless loop
+      if (gallery.scrollLeft >= gallery.scrollWidth - gallery.clientWidth) {
+        gallery.scrollLeft = 0;
+      }
+      requestAnimationFrame(autoScroll);
+    }
+    autoScroll();
+  });
+</script>
+
+</body>
+</html>
