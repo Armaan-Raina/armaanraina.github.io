@@ -140,13 +140,7 @@ header nav ul li a:hover {
   border-radius: 10px;
 }
 
-.project3-image, .project4-image {
-  margin-left: 10rem;
-}
 
-.project4-image {
-  margin-left: 16rem;
-}
 
 .project4-text {
   flex: 1 1 300px;
