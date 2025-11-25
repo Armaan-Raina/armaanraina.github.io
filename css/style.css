@@ -62,18 +62,219 @@ header {
   background-color: rgba(250, 250, 250, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+/* EEG Wave Animation Background */
+.header-waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Abstract axes for artistic appearance */
+.header-waves::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(74, 85, 104, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 85, 104, 0.08) 1px, transparent 1px);
+  background-size: 40px 8px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.header-waves::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(74, 85, 104, 0.15) 15%, rgba(74, 85, 104, 0.15) 85%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Additional artistic vertical axes */
+.header-waves-axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 10%, rgba(74, 85, 104, 0.1) 30%, rgba(74, 85, 104, 0.1) 70%, transparent 90%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.axis-1 { left: 20%; }
+.axis-2 { left: 40%; }
+.axis-3 { left: 60%; }
+.axis-4 { left: 80%; }
+
+.wave-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.65;
+  transition: all 0.3s ease;
+}
+
+.wave-layer:hover {
+  opacity: 0.85;
+  animation-duration: 1.5s !important;
+}
+
+.wave-path {
+  stroke: #4a5568;
+  stroke-width: 1;
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* Different frequency wave animations - spread out layout */
+.alpha-wave {
+  top: 8px;
+  height: 12px;
+  animation: alphaWave 6s ease-in-out infinite;
+}
+
+.beta-wave {
+  top: 20px;
+  height: 12px;
+  animation: betaWave 4.5s ease-in-out infinite;
+  animation-delay: -0.75s;
+}
+
+.theta-wave {
+  top: 32px;
+  height: 12px;
+  animation: thetaWave 7.5s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+.delta-wave {
+  top: 44px;
+  height: 12px;
+  animation: deltaWave 9s ease-in-out infinite;
+  animation-delay: -2.25s;
+}
+
+.gamma-wave {
+  top: 56px;
+  height: 12px;
+  animation: gammaWave 3s ease-in-out infinite;
+  animation-delay: -0.375s;
+}
+
+/* Frequency-specific wave styling */
+.alpha-wave .wave-path {
+  stroke-width: 1.2px;
+  opacity: 0.7;
+}
+
+.beta-wave .wave-path {
+  stroke-width: 1px;
+  opacity: 0.65;
+}
+
+.theta-wave .wave-path {
+  stroke-width: 1.4px;
+  opacity: 0.75;
+}
+
+.delta-wave .wave-path {
+  stroke-width: 1.6px;
+  opacity: 0.8;
+}
+
+.gamma-wave .wave-path {
+  stroke-width: 0.8px;
+  opacity: 0.6;
+}
+
+/* Wave animation keyframes */
+@keyframes alphaWave {
+  0%, 100% {
+    d: path("M0,6 Q75,4 150,6 T300,6 T450,6 T600,6 T750,6 T900,6 T1050,6 T1200,6");
+  }
+  25% {
+    d: path("M0,6 Q75,9 150,3 T300,8 T450,4 T600,9 T750,3 T900,8 T1050,4 T1200,6");
+  }
+  50% {
+    d: path("M0,6 Q75,1 150,9 T300,2 T450,8 T600,1 T750,9 T900,2 T1050,8 T1200,6");
+  }
+  75% {
+    d: path("M0,6 Q75,11 150,1 T300,10 T450,2 T600,11 T750,1 T900,10 T1050,2 T1200,6");
+  }
+}
+
+@keyframes betaWave {
+  0%, 100% {
+    d: path("M0,9 Q50,7 100,9 T200,9 T300,9 T400,9 T500,9 T600,9 T700,9 T800,9 T900,9 T1000,9 T1100,9 T1200,9");
+  }
+  33% {
+    d: path("M0,9 Q50,11 100,7 T200,10 T300,8 T400,11 T500,7 T600,10 T700,8 T800,11 T900,7 T1000,10 T1100,8 T1200,9");
+  }
+  66% {
+    d: path("M0,9 Q50,3 100,11 T200,4 T300,10 T400,3 T500,11 T600,4 T700,10 T800,3 T900,11 T1000,4 T1100,10 T1200,9");
+  }
+}
+
+@keyframes thetaWave {
+  0%, 100% {
+    d: path("M0,4 Q100,3 200,4 T400,4 T600,4 T800,4 T1000,4 T1200,4");
+  }
+  50% {
+    d: path("M0,4 Q100,7 200,1 T400,6 T600,2 T800,7 T1000,1 T1200,4");
+  }
+}
+
+@keyframes deltaWave {
+  0%, 100% {
+    d: path("M0,10 Q150,9 300,10 T600,10 T900,10 T1200,10");
+  }
+  50% {
+    d: path("M0,10 Q150,5 300,11 T600,6 T900,11 T1200,10");
+  }
+}
+
+@keyframes gammaWave {
+  0%, 100% {
+    d: path("M0,8 Q25,6 50,8 T100,8 T150,8 T200,8 T250,8 T300,8 T350,8 T400,8 T450,8 T500,8 T550,8 T600,8 T650,8 T700,8 T750,8 T800,8 T850,8 T900,8 T950,8 T1000,8 T1050,8 T1100,8 T1150,8 T1200,8");
+  }
+  25% {
+    d: path("M0,8 Q25,11 50,5 T100,10 T150,6 T200,11 T250,5 T300,10 T350,6 T400,11 T450,5 T500,10 T550,6 T600,11 T650,5 T700,10 T750,6 T800,11 T850,5 T900,10 T950,6 T1000,11 T1050,5 T1100,10 T1150,6 T1200,8");
+  }
+  50% {
+    d: path("M0,8 Q25,2 50,11 T100,3 T150,10 T200,2 T250,11 T300,3 T350,10 T400,2 T450,11 T500,3 T550,10 T600,2 T650,11 T700,3 T750,10 T800,2 T850,11 T900,3 T950,10 T1000,2 T1050,11 T1100,3 T1150,10 T1200,8");
+  }
+  75% {
+    d: path("M0,8 Q25,11 50,2 T100,10 T150,3 T200,11 T250,2 T300,10 T350,3 T400,11 T450,2 T500,10 T550,3 T600,11 T650,2 T700,10 T750,3 T800,11 T850,2 T900,10 T950,3 T1000,11 T1050,2 T1100,10 T1150,3 T1200,8");
+  }
 }
 
 header nav ul {
   display: flex;
   justify-content: flex-end;
   list-style: none;
-  padding: 0;
+  padding: 0 2rem 0 0;
   margin: 0;
   height: 100%;
   position: absolute;
   top: 0;
-  right: 2rem;
+  right: 0;
+  z-index: 2;
 }
 
 header nav ul li {
@@ -507,15 +708,16 @@ header nav ul li a:hover::after {
 /**************Interests Page Styles**************/
 .food, .photos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   padding: 1.5rem 0;
   margin: 2rem 0;
 }
 
 .food img, .photos img {
-  width: 220px;
+  width: 100%;
   height: auto;
+  max-width: 280px;
   border-radius: 12px;
   box-shadow: 0 8px 24px var(--shadow-color);
   transition: all 0.3s ease;
@@ -534,7 +736,6 @@ header nav ul li a:hover::after {
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
-  background-color: #dddde3;
   scrollbar-width: none;
 }
 
