@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>armaanraina</title>
+<title>Home</title>
 <link rel="stylesheet" href="css/style.css"> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -10,7 +10,8 @@
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="projects.html">Projects</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="projects.html">Personal Projects</a></li>
       <li><a href="interests.html">Interests</a></li>
       <li><a href="resume.html">Resume</a></li>
       <li><a href="other.html">Other</a></li>
@@ -24,14 +25,22 @@
         <h1 id="intro-text"></h1>
          <p id="intro-body" class="hidden fade-in">
            Welcome to my portfolio!
-          I'm a Computer Science and Statistics student headed into my third year at NC State University.
-           My curiousity about the human experience and how we can quantify the way our brain creates it has led me to explore neuroscience, 
-           statistics, and philosophy. I'm deeply interested in closed-loop brain-computer interface systems and their potential in theraputic
-           applications.
+          I'm a Computer Science and Statistics student at NC State University, driven by curiosity about the intersection of technology, data, and human experience.
+           My interests span neuroscience, machine learning, philosophy, and the creative process of building things that matter.
            <br><br>
-           In my free time, I enjoy being outdoors, cooking (and eating), and have recently picked up more reading. If we share any common interests or you
-           have any questions about my work, I'd love to hear from you!
+           When I'm not studying or researching, you'll find me outdoors exploring, in the kitchen experimenting with recipes, or diving into a good book.
+           I love connecting with people who share similar passions or have questions about my work—feel free to reach out!
          </p>
+         <p id="excitement-text" class="fade-in" style="margin-top: 20px; font-size: 1.2em; color: var(--text-secondary);">
+           I am excited about <span id="rotating-text"></span>
+         </p>
+         <div class="spike-train">
+           <div class="spike-bar"></div>
+           <div class="spike-bar"></div>
+           <div class="spike-bar"></div>
+           <div class="spike-bar"></div>
+           <div class="spike-bar"></div>
+         </div>
       </div>
       <img src="images/Headshot.JPG" alt="Profile Picture" class="pfp">
     </div>
@@ -52,7 +61,14 @@
   const text = "Hi, I'm Armaan";
   const textElement = document.getElementById("intro-text");
   const bodyElement = document.getElementById("intro-body");
+  const excitementElement = document.getElementById("excitement-text");
+  const rotatingElement = document.getElementById("rotating-text");
   let index = 0;
+
+  const interests = ["neuroscience", "machine learning", "philosophy", "building", "learning", "FC Barcelona (sometimes)", "cooking", "thrifting"];
+  let currentInterestIndex = 0;
+  let currentCharIndex = 0;
+  let isDeleting = false;
 
   function typeText() {
     if (index < text.length) {
@@ -64,8 +80,48 @@
       setTimeout(() => {
         bodyElement.classList.remove("hidden");
         bodyElement.classList.add("fade-in");
-      }, 2000); // 0.5s delay before fade-in
+        // Start the rotating text animation after body text appears
+        setTimeout(() => {
+          excitementElement.style.opacity = "1";
+          typeInterest();
+        }, 1000);
+      }, 500);
     }
+  }
+
+  function typeInterest() {
+    const currentInterest = interests[currentInterestIndex];
+    const cursor = "|";
+
+    if (!isDeleting) {
+      // Typing effect
+      rotatingElement.textContent = currentInterest.substring(0, currentCharIndex + 1) + cursor;
+      currentCharIndex++;
+
+      if (currentCharIndex === currentInterest.length) {
+        // Pause at the end of the word
+        setTimeout(() => {
+          isDeleting = true;
+          typeInterest();
+        }, 2000);
+        return;
+      }
+    } else {
+      // Backspacing effect
+      rotatingElement.textContent = currentInterest.substring(0, currentCharIndex) + cursor;
+      currentCharIndex--;
+
+      if (currentCharIndex < 0) {
+        isDeleting = false;
+        currentInterestIndex = (currentInterestIndex + 1) % interests.length;
+        // Pause before starting the next word
+        setTimeout(typeInterest, 500);
+        return;
+      }
+    }
+
+    const speed = isDeleting ? 50 : 100;
+    setTimeout(typeInterest, speed);
   }
 
   window.onload = typeText;
