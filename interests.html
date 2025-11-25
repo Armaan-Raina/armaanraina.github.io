@@ -78,22 +78,6 @@
     </div>       
   </section>
 </main>
-<script>
-  const galleries = document.querySelectorAll('.food, .photos');
-
-  galleries.forEach(gallery => {
-    let scrollSpeed = 1.5; // Adjust speed here
-    function autoScroll() {
-      gallery.scrollLeft += scrollSpeed;
-      // Reset scroll to start for endless loop
-      if (gallery.scrollLeft >= gallery.scrollWidth - gallery.clientWidth) {
-        gallery.scrollLeft = 0;
-      }
-      requestAnimationFrame(autoScroll);
-    }
-    autoScroll();
-  });
-</script>
 
 </body>
 </html>
