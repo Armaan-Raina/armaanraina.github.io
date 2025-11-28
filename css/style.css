@@ -707,21 +707,44 @@ header nav ul li a:hover::after {
 
 /**************Interests Page Styles**************/
 .food, .photos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 1rem;
   padding: 1.5rem 0;
   margin: 2rem 0;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.food::-webkit-scrollbar, .photos::-webkit-scrollbar {
+  height: 8px;
+}
+
+.food::-webkit-scrollbar-track, .photos::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.food::-webkit-scrollbar-thumb, .photos::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.food::-webkit-scrollbar-thumb:hover, .photos::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
 }
 
 .food img, .photos img {
-  width: 100%;
-  height: auto;
-  max-width: 280px;
+  flex-shrink: 0;
+  width: 280px;
+  height: 200px;
+  object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 24px var(--shadow-color);
   transition: all 0.3s ease;
   border: 1px solid var(--border-color);
+  cursor: pointer;
 }
 
 .food img:hover, .photos img:hover {

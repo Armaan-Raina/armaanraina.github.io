@@ -34,7 +34,6 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="research.html">Research</a></li>
       <li><a href="projects.html">Personal Projects</a></li>
-      <li><a href="interests.html">Interests</a></li>
       <li><a href="resume.html">Resume</a></li>
       <li><a href="other.html">Other</a></li>
     </ul>
@@ -47,14 +46,12 @@
         <h1 id="intro-text"></h1>
          <p id="intro-body" class="hidden fade-in">
            Welcome to my portfolio!
-          I'm a Computer Science and Statistics student at NC State University, driven by curiosity about the intersection of technology, data, and human experience.
-           My interests span neuroscience, machine learning, philosophy, and the creative process of building things that matter.
-           <br><br>
-           When I'm not studying or researching, you'll find me outdoors exploring, in the kitchen experimenting with recipes, or diving into a good book.
-           I love connecting with people who share similar passions or have questions about my work—feel free to reach out!
+           I'm a third year statistics and computer science student at North Carolina State University interested in the human brain.
+           In the past few years I've become increasingly interested in neural interfaces, which is what I hope to explore further as I progress
+           in undergrad and beyond. If we share any common interests or you'd like to learn more about any of my experiences, I'd love to hear from you!
          </p>
          <p id="excitement-text" class="fade-in" style="margin-top: 20px; font-size: 1.2em; color: var(--text-secondary);">
-           I am excited about <span id="rotating-text"></span>
+           In my freetime I enjoy <span id="rotating-text"></span>
          </p>
          <div class="spike-train">
            <div class="spike-bar"></div>
@@ -87,7 +84,7 @@
   const rotatingElement = document.getElementById("rotating-text");
   let index = 0;
 
-  const interests = ["neuroscience", "machine learning", "philosophy", "building", "learning", "FC Barcelona (sometimes)", "cooking", "thrifting"];
+  const interests = ["being outside", "philosophy", "FC Barcelona (sometimes)", "learning", "building", "cooking", "thrifting"];
   let currentInterestIndex = 0;
   let currentCharIndex = 0;
   let isDeleting = false;
