@@ -660,6 +660,31 @@ header nav ul li a:hover::after {
   box-shadow: 0 12px 40px var(--shadow-color);
 }
 
+.citation-box {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+}
+
+.citation-box:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.citation-box p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.citation-link {
+  text-decoration: none;
+  display: block;
+}
+
 
 
 .project4-text {
