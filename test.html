@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armaan Raina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-ink-light: #4a4a4a;
+            --color-ink-faded: #6b6b6b;
+            --color-cream: #faf9f7;
+            --color-cream-dark: #f0eee9;
+            --color-accent: #8b7355;
+            --color-accent-light: #c4a77d;
+            --color-border: #e5e2dc;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Nunito Sans', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-ink);
+            background-color: var(--color-cream);
+            -webkit-font-smoothing: antialiased;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 0.1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-ink-light);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2.5rem 4rem;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-content h1 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 400;
+            color: var(--color-ink-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-intro {
+            font-size: 1.05rem;
+            color: var(--color-ink-faded);
+            max-width: 540px;
+            line-height: 1.8;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            filter: grayscale(15%) contrast(1.02);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--color-accent-light);
+            z-index: -1;
+        }
+
+        /* Distinctions Section */
+        .distinctions {
+            padding: 6rem 2.5rem;
+            background: white;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 3.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .distinctions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .distinction-card {
+            padding: 2.5rem;
+            background: var(--color-cream);
+            border: 1px solid var(--color-border);
+            transition: border-color 0.3s ease;
+        }
+
+        .distinction-card:hover {
+            border-color: var(--color-accent-light);
+        }
+
+        .distinction-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+            color: var(--color-accent);
+        }
+
+        .distinction-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .distinction-card .subtitle {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .distinction-card p {
+            font-size: 0.95rem;
+            color: var(--color-ink-faded);
+            line-height: 1.7;
+        }
+
+        /* Research Section */
+        .research {
+            padding: 6rem 2.5rem;
+        }
+
+        .research-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .research-text h3 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+        }
+
+        .research-text p {
+            color: var(--color-ink-faded);
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+        }
+
+        .research-text p strong {
+            color: var(--color-ink);
+            font-weight: 600;
+        }
+
+        .research-areas {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .research-area {
+            padding: 2rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .research-area-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--color-accent-light);
+            line-height: 1;
+        }
+
+        .research-area h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .research-area p {
+            font-size: 0.9rem;
+            color: var(--color-ink-faded);
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 2.5rem;
+            background: var(--color-ink);
+            color: white;
+        }
+
+        .projects .section-label {
+            color: var(--color-accent-light);
+        }
+
+        .projects .section-title {
+            color: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent-light);
+            padding: 0.35rem 0.75rem;
+            border: 1px solid var(--color-accent-light);
+            margin-bottom: 1.25rem;
+        }
+
+        .project-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+        }
+
+
+        /* Values Section */
+        .values {
+            padding: 6rem 2.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .values-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        .values-quote {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--color-ink);
+            line-height: 1.5;
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--color-accent-light);
+        }
+
+        .values-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .value-item {
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .value-item svg {
+            color: var(--color-accent);
+            margin-top: 0.15rem;
+        }
+
+        .value-item h4 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .value-item p {
+            font-size: 0.9rem;
+            color: var(--color-ink-faded);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2.5rem;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            color: var(--color-ink-faded);
+            max-width: 560px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--color-border);
+            transition: all 0.2s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .contact-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 2.5rem;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--color-ink-faded);
+            letter-spacing: 0.02em;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .distinctions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-content,
+            .values-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .distinctions,
+            .research,
+            .projects,
+            .values,
+            .contact {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="nav-name">Armaan Raina</a>
+            <ul class="nav-links">
+                <li><a href="#distinctions">Achievements</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1>Building technology<br>for <em>human flourishing</em></h1>
+                <p class="hero-tagline">Computer Science & Statistics · NC State University</p>
+                <p class="hero-intro">
+                    I'm a third-year student exploring the intersection of neuroscience and technology. 
+                    My work focuses on developing neural interfaces that can meaningfully improve lives, 
+                    particularly for those with disabilities. I believe technology should serve humanity's 
+                    highest aspirations.
+                </p>
+            </div>
+            <div class="hero-image">
+                <img src="images/Headshot.JPG" alt="Armaan Raina">
+            </div>
+        </div>
+    </section>
+
+    <!-- Distinctions Section -->
+    <section class="distinctions" id="distinctions">
+        <div class="section-inner">
+            <p class="section-label">Achievements</p>
+            <h2 class="section-title">Distinctions & Honors</h2>
+            <div class="distinctions-grid">
+                <div class="distinction-card">
+                    <svg class="distinction-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 15l-2 5l4-3l4 3l-2-5m-8-5a4 4 0 1 0 8 0a4 4 0 1 0 -8 0m4-7v3m-6.5 3.5l2.12 2.12m10.76-2.12l-2.12 2.12"/>
+                    </svg>
+                    <h3>Caldwell Fellow</h3>
+                    <p class="subtitle">Class of 2027</p>
+                    <p>Selected from among 300 applicants for NC State's oldest and most prestigious undergraduate scholarship and leadership development program. A four-year commitment to servant leadership, personal growth, and community impact.</p>
+                </div>
+                <div class="distinction-card">
+                    <svg class="distinction-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <h3>Founder</h3>
+                    <p class="subtitle">Neurotech @ NC State</p>
+                    <p>Created and lead a student organization developing assistive neurotechnology devices for children at Hilltop Home, applying principles of neural interfaces to improve the lives of disabled individuals.</p>
+                </div>
+                <div class="distinction-card">
+                    <svg class="distinction-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/>
+                        <path d="M9 12h6m-6 4h6"/>
+                    </svg>
+                    <h3>Research Associate</h3>
+                    <p class="subtitle">Meitzen Lab</p>
+                    <p>Conducting undergraduate research under Dr. Meitzen, exploring the intersection of neuroscience, behavior, and computational methods to advance our understanding of neural systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="research" id="research">
+        <div class="section-inner">
+            <p class="section-label">Focus Areas</p>
+            <h2 class="section-title">Research Interests</h2>
+            <div class="research-content">
+                <div class="research-text">
+                    <h3>The Human Brain as Interface</h3>
+                    <p>I'm drawn to the profound question of how we can create meaningful connections between the human nervous system and technology. Neural interfaces represent one of the most promising frontiers for improving quality of life.</p>
+                    <p><strong>My approach</strong> combines rigorous statistical methodology with practical computer science applications, always grounded in the goal of human benefit. I believe the best technology emerges when technical excellence meets genuine empathy for those it serves.</p>
+                </div>
+                <div class="research-areas">
+                    <div class="research-area">
+                        <span class="research-area-number">01</span>
+                        <div>
+                            <h4>Neural Interfaces</h4>
+                            <p>Developing brain-computer interfaces that can translate neural signals into actionable outputs for assistive technology applications.</p>
+                        </div>
+                    </div>
+                    <div class="research-area">
+                        <span class="research-area-number">02</span>
+                        <div>
+                            <h4>Computational Neuroscience</h4>
+                            <p>Applying statistical and machine learning methods to understand patterns in neural data and improve signal processing.</p>
+                        </div>
+                    </div>
+                    <div class="research-area">
+                        <span class="research-area-number">03</span>
+                        <div>
+                            <h4>Assistive Technology</h4>
+                            <p>Creating practical devices that leverage neuroscience principles to help individuals with disabilities live more independent lives.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="section-inner">
+            <p class="section-label">Selected Work</p>
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="tag">Neurotechnology</span>
+                    <h3>Hilltop Home Device</h3>
+                    <p>Designing and developing assistive technology devices for children with disabilities at Hilltop Home, applying EEG-based signal processing to create intuitive control interfaces.</p>
+                </div>
+                <div class="project-card">
+                    <span class="tag">Leadership</span>
+                    <h3>Neurotech @ NC State</h3>
+                    <p>Founded and lead a student organization bringing together engineers, neuroscientists, and designers to explore the potential of brain-computer interfaces for social good.</p>
+                </div>
+                <div class="project-card">
+                    <span class="tag">Research</span>
+                    <h3>Neural Signal Analysis</h3>
+                    <p>Undergraduate research applying computational methods to analyze neural data, developing statistical frameworks for understanding patterns in brain activity.</p>
+                </div>
+                <div class="project-card">
+                    <span class="tag">Service</span>
+                    <h3>Caldwell Fellows Service</h3>
+                    <p>Participating in service-learning initiatives through the Caldwell Fellows program, including community outreach and STEM education for underserved populations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <div class="section-inner">
+            <p class="section-label">Philosophy</p>
+            <h2 class="section-title">Guiding Principles</h2>
+            <div class="values-content">
+                <blockquote class="values-quote">
+                    "To me, leadership and service have never felt like interests as much as integral parts of life that I happen to enjoy."
+                </blockquote>
+                <div class="values-list">
+                    <div class="value-item">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        <div>
+                            <h4>Servant Leadership</h4>
+                            <p>Leading by putting others first and creating opportunities for collective growth.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        <div>
+                            <h4>Purpose-Driven Technology</h4>
+                            <p>Building solutions that genuinely improve human lives, not technology for its own sake.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        <div>
+                            <h4>Rigorous Integrity</h4>
+                            <p>Pursuing excellence through honest inquiry and principled reflection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-inner">
+            <p class="section-label">Get in Touch</p>
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="contact-text">
+                I'm always interested in discussing neural interfaces, neurotechnology, or opportunities to collaborate on projects that improve lives. Feel free to reach out.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:your-email@ncsu.edu" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    Email
+                </a>
+                <a href="https://www.linkedin.com/in/armaanraina" class="contact-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="resume.html" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>©️ 2026 Armaan Raina · NC State University · Built with purpose</p>
+    </footer>
+</body>
+</html>

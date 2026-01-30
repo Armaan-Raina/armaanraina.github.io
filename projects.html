@@ -1,153 +1,698 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Projects</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armaan's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-ink-light: #4a4a4a;
+            --color-ink-faded: #6b6b6b;
+            --color-cream: #faf9f7;
+            --color-accent: #8b7355;
+            --color-accent-light: #c4a77d;
+            --color-border: #e5e2dc;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Nunito Sans', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-ink);
+            background-color: var(--color-cream);
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 0.1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-ink-light);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 2.5rem 4rem;
+            text-align: center;
+            background: var(--color-cream);
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .page-description {
+            font-size: 1.1rem;
+            color: var(--color-ink-faded);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Sections */
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 3.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Projects Grid with Sliding Animation */
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .project-wrapper {
+            position: relative;
+            min-height: 240px;
+        }
+
+        .project-details {
+            position: absolute;
+            right: 0;
+            top: -2.2rem;
+            width: 50%;
+            padding: 2rem;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .project-card {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 50%;
+            padding: 2rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+        }
+
+        .project-wrapper.active .project-details {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .project-wrapper.active .project-card {
+            left: 0;
+            width: 45%;
+        }
+
+        .project-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--color-accent-light);
+            line-height: 1;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            padding: 0.35rem 0.75rem;
+            border: 1px solid var(--color-accent-light);
+            margin-bottom: 1.25rem;
+            display: inline-block;
+        }
+
+        .project-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            color: var(--color-ink-faded);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .project-details h5 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .project-details ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-details li {
+            color: var(--color-ink-faded);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-details li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-light);
+        }
+
+        .project-details .skills {
+            margin-top: 1rem;
+        }
+
+        .project-details .skill-tag {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            background: var(--color-cream);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--color-ink);
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Coursework Section */
+        .coursework-section {
+            padding: 6rem 2.5rem;
+            background: var(--color-ink);
+            color: white;
+        }
+
+        .coursework-section .section-label {
+            color: var(--color-accent-light);
+        }
+
+        .coursework-section .section-title {
+            color: white;
+        }
+
+        .coursework-intro {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .coursework-grid {
+            display: grid;
+            gap: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .coursework-card {
+            position: relative;
+            padding: 2rem 2rem 2rem 3rem;
+            background: transparent;
+            border-left: 3px solid var(--color-accent-light);
+            transition: all 0.3s ease;
+        }
+
+        .coursework-card::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 2rem;
+            width: 13px;
+            height: 13px;
+            background: var(--color-accent-light);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .coursework-card:hover {
+            transform: translateX(8px);
+            border-left-color: var(--color-accent);
+        }
+
+        .coursework-card:hover::before {
+            transform: scale(1.3);
+            background: var(--color-accent);
+        }
+
+        .coursework-card .tag {
+            color: var(--color-accent-light);
+            border: 1px solid var(--color-accent-light);
+            font-size: 0.65rem;
+            padding: 0.3rem 0.65rem;
+        }
+
+        .coursework-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .coursework-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+        }
+
+        .upcoming-subtitle {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: white;
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .upcoming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .upcoming-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 2px solid var(--color-accent-light);
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .upcoming-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.15);
+            border-top-color: var(--color-accent);
+            transform: translateY(-4px);
+        }
+
+        .upcoming-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .upcoming-card .course-semester {
+            color: var(--color-accent-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .upcoming-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 2.5rem;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            background: var(--color-cream);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--color-ink-faded);
+            letter-spacing: 0.02em;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .project-wrapper {
+                min-height: auto;
+            }
+
+            .project-card {
+                position: static;
+                width: 100%;
+            }
+
+            .project-wrapper.active .project-card {
+                width: 100%;
+            }
+
+            .project-details {
+                position: static;
+                width: 100%;
+                opacity: 0;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 1rem;
+                transform: none;
+            }
+
+            .project-wrapper.active .project-details {
+                opacity: 1;
+                max-height: 500px;
+                padding: 2rem;
+                margin-top: 1rem;
+            }
+
+            .coursework-grid,
+            .upcoming-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            .page-header {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .section-inner {
+                padding: 0 1.5rem;
+            }
+
+            .coursework-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="projects.html">Personal Projects</a></li>
-      <li><a href="resume.html">Resume</a></li>
-      <li><a href="other.html">Other</a></li>
-    </ul>
-  </nav>
-</header>
-<main>
-  <section id="Personal-Projects">
-    <div class="all-projects">
-      <h1>Personal Projects/ Coursework</h1>
-      <div class="project-section">
-        <div class="project2">
-          <div class="project2-text">
-            <h2>Cofounder - Neurotech at NC State</h2>
-            <p>As cofounder of <a href="https://ncsuneurotech.org/" target="_blank" class="dataset-link">Neurotech at NC State</a>, I have helped recruit over 25 curious and amazing students with majors ranging from electrical engineering to business to collaborate with us on projects.
-            I've also led grant writing efforts resulting in over $4,000 of free hardware being donated to our club. Another thing I've helped with is
-            idea drafting for projects we are working on, supporting members and my other two cofounders in developing some very cool ideas. Lastly, I've handled the adminstrative side of things by making us a
-            bank account, student org page, and setting up collaborations with other organizations.   </p>
-          </div>
-          <img src="images/Nuroteh.JPG" alt="Neurotech at NC State" class="project2-image">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">Armaan Raina</a>
+            <ul class="nav-links">
+                <li><a href="research.html">Research</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="other.html">Other</a></li>
+            </ul>
         </div>
-      </div>
-      <div class="project-section">
-        <div class="project2">
-          <div class="project2-text">
-            <h2>Schizophrenia EEG Classification</h2>
-            <p>This project was my introduction into the interaction of ML and neuroscience. Inspired by <a href="https://www.youtube.com/watch?v=_BdBJOOqMes&list=PLtGXgNsNHqPTgP9wyR8pmy2EuM2ZGHU5Z">
-            Talha Anwar's series</a> on applying machine learning to EEG data, I learned how to make EEG into tabular, usable data and process signals in python. Beyond the videos, explored the use of power
-            spectral density as a powerful feature in the classification task. This project helped me refine my data science skills and opened my mind to
-            the possibilities of using Python for neuroscience. Check out my Github for the code! </p>
-            <br><br>
-            <p>On the right is a picture of me with my first ever EEG headset, gifted to me by a mentor. Tinkering with it
-              taught me a great deal about the challenges of working with EEG data, the importance of signal processing, and
-              the crazy amount of setup needed for a quality recording.
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="section-inner">
+            <h1 class="page-title">Projects</h1>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="section-inner">
+            <p class="section-label">Selected Work</p>
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-wrapper">
+                    <div class="project-details">
+                        <h5>Key Highlights</h5>
+                        <ul>
+                            <li>Recruited 25+ members from across engineering, neuroscience, and design</li>
+                            <li>Secured $5,600+ in hardware donations from outreach to companies</li>
+                            <li>Led decoding efforts and workshops to educate members on the use of Python in neuroscience</li>
+                        </ul>
+                        <div class="skills">
+                            <span class="skill-tag">Leadership</span>
+                            <span class="skill-tag">Community Building</span>
+                            <span class="skill-tag">Grant Writing</span>
+                            <span class="skill-tag">Arduino</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <span class="project-number">01</span>
+                        <div>
+                            <span class="tag">Community/ Education</span>
+                            <h3>Neurotech @ NC State</h3>
+                            <p>Cofounded and lead a student organization bringing together engineers, neuroscientists, and designers to explore brain-computer interfaces.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-wrapper">
+                    <div class="project-details">
+                        <h5>Key Highlights</h5>
+                        <ul>
+                            <li>Trained an artificial neural network implemented using PyTorch achieving 95.26% accuracy on Bonn EEG dataset</li>
+                            <li>Explored deep learning architecture including recurrence, LSTMS, GRUS, and more for epileptic seizure detection</li>
+                            <li>Applied data preprocessing and feature extraction techniques to EEG signals</li>
+                        </ul>
+                        <div class="skills">
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">EEG Analysis</span>
+                            <span class="skill-tag">Neural Networks</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <span class="project-number">02</span>
+                        <div>
+                            <span class="tag">Deep Learning</span>
+                            <h3>Epilepsy State Decoder</h3>
+                            <p>Explored deep learning techniques to classify epileptic states from the Bonn dataset, achieving 95.26% accuracy in seizure detection using a simple ANN.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-wrapper">
+                    <div class="project-details">
+                        <h5>Key Highlights</h5>
+                        <ul>
+                            <li>Preprocessed and cleaned EEG data from schizophrenia patients</li>
+                            <li>Extracted power spectral density features across frequency bands</li>
+                            <li>Trained and evaluated multiple ML classifiers for diagnostic prediction</li>
+                            <li>Explored challenges of working with noisy neural data</li>
+                        </ul>
+                        <div class="skills">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Signal Processing</span>
+                            <span class="skill-tag">EEG Analysis</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <span class="project-number">03</span>
+                        <div>
+                            <span class="tag">Machine Learning</span>
+                            <h3>Schizophrenia EEG Classification</h3>
+                            <p>Built machine learning models to classify schizophrenia from EEG data using power spectral density features.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coursework Section -->
+    <section class="coursework-section" id="coursework">
+        <div class="section-inner">
+            <p class="section-label">Academic Journey</p>
+            <h2 class="section-title">Coursework</h2>
+            <p class="coursework-intro">
+                A collection of the most interesting courses I've taken thus far in my undergraduate degree.
             </p>
-          </div>
-          <img src="images/eeg.jpeg" alt="Schizophrenia EEG Classification" class="project2-image">
+            <div class="coursework-grid">
+                <div class="coursework-card">
+                    <span class="tag">ECE 505</span>
+                    <h3>Neural Interface Engineering</h3>
+                    <p>This class covered biophysics, considerations about stimulation/ recording electrode design, and a deep dive into existing applications (pacemakers, retinal implants, DBS, etc.) . <br>
+                        <b>Main takeaway:</b> material scientists are unbelievably underappreciated.</p>
+                </div>
+                <div class="coursework-card">
+                    <span class="tag">ST 422</span>
+                    <h3>Mathematical Statistics II</h3>
+                    <p>This class primarily covered estimators and how to evaluate their quality combined an in depth revist of fundamental statistical tools such as confidence intervals and hypothesis testing.
+                        <br><b>Main Takeaway:</b> A new perspective on inference and how to think about the quality of guesses.</p>
+                </div>
+                <div class="coursework-card">
+                    <span class="tag">BIO 488/588</span>
+                    <h3>Neurobiology Fundamentals</h3>
+                    <p>This class covered the ionic basis of the action potential, synaptic plasticity, various motor pathways/ neural networks, and the neural basis for several disorders.
+                        <br><b>Main takeaway:</b> Plasticity is an extremely powerful concept.</p>
+                </div>
+                <div class="coursework-card">
+                    <span class="tag">ECD 310H</span>
+                    <h3>Caldwell Fellows Seminar</h3>
+                    <p>This class covered a wide array of topics with a focus on servant leadership and developing a personal definition of leadership.
+                        <br><b>Main takeaway:</b> The importance of understanding who you are serving and why you are serving them before actually taking action.</p>
+                </div>
+            </div>
+
+            <!-- Upcoming Coursework -->
+            <h3 class="upcoming-subtitle">Upcoming Coursework</h3>
+            <div class="upcoming-grid">
+                <div class="upcoming-card">
+                    <span class="tag">ECE 492</span>
+                    <h4>Physical AI with Brain-Inspired Electronics</h4>
+                    <p class="course-semester">Spring 2026</p>
+                </div>
+                <div class="upcoming-card">
+                    <span class="tag">CSC 491</span>
+                    <h4>Neural Networks</h4>
+                    <p class="course-semester">Spring 2026</p>
+                </div>
+                <div class="upcoming-card">
+                    <span class="tag">ST 434</span>
+                    <h4>Applied Time Series</h4>
+                    <p class="course-semester">Fall 2026</p>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="wave-divider"></div>
-
-      <h2>Interesting Coursework</h2>
-
-      <div class="project-section">
-        <div class="project2">
-          <div class="project2-text">
-            <h3>ECE 505 - Neural Interface Engineering </h3>
-            <p>Fall 2025</p>
-          </div>
-          <div class="project2-text">
-            <p>This class covered biophysics, considerations about stimulation/ recording electrode design, and a deep dive into existing applications (pacemakers, retinal implants, DBS, etc.) . <b>Main takeaway</b>: Material scientists are unbelievably underappreciated.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-section">
-        <div class="project2">
-          <div class="project2-text">
-            <h3>ST 422 - Mathematical Statistics ll</h3>
-            <p>Fall 2025</p>
-          </div>
-          <div class="project2-text">
-            <p>This class primarily covered estimators and how to evaluate their quality combined an in depth revist of fundamental statistical tools such as confidence intervals and hypothesis testing.<br>
-              <b>Main Takeaway</b>: A new perspective on inference and how to think about the quality of guesses. </p>
-          </div>
-        </div>
-      </div>
+    </section>
 
 
-      <div class="project-section">
-        <div class="project2">
-          <div class="project2-text">
-            <h3>ECD 310 - Caldwell Fellows Seminar</h3>
-            <p>Fall 2024</p>
-          </div>
-          <div class="project2-text">
-            <p>This class covered a wide array of topics with a focus on servant leadership and developing a personal definition of leadership.<br>
-               <b>Main takeaway</b>: The importance of understanding who you are serving and why you are serving them before actually taking action.</p>
-          </div>
-        </div>
-      </div>
+    <script>
+        function handleScroll() {
+            const wrappers = document.querySelectorAll('.project-wrapper');
+            const windowHeight = window.innerHeight;
+            
+            wrappers.forEach(wrapper => {
+                const rect = wrapper.getBoundingClientRect();
+                const elementTop = rect.top;
+                const elementBottom = rect.bottom;
+                
+                // Activate when element enters the upper 60% of viewport
+                const elementMiddle = rect.top + (rect.height / 2);
+                const isInTriggerZone = elementMiddle > 0 && elementMiddle < windowHeight * 0.6;
+                
+                // Deactivate only when element is completely above the viewport
+                const isCompletelyAbove = elementBottom < 0;
+                
+                if (isInTriggerZone) {
+                    wrapper.classList.add('active');
+                } else if (isCompletelyAbove) {
+                    wrapper.classList.remove('active');
+                }
+            });
+        }
 
-      
-      <div class="project-section">
-        <div class="project2">
-          <div class="project2-text">
-            <h3>BIO 488 - Neurobiology</h3>
-            <p>Fall 2023</p>
-          </div>
-          <div class="project2-text">
-            <p>This class covered the ionic basis of the action potential, synaptic plasticity, various motor pathways/ neural networks, and the neural basis for several disorders. <br>
-            <b>Main takeaway</b>: The brain is such a fascinating and complex system.</p>
-          </div>
-        </div>
-      </div>
-
-      <h2>Taking Soon...</h2>
-
-      <div class="project-section">
-        <div class="project2">
-          <div class="project2-text">
-            <h3>ECE 492 - Physical AI with Brain-Inspired Electronics</h3>
-            <p>Spring 2026</p>
-          </div>
-          <div class="project2-text">
-            <p></p>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="project-section">
-        <div class="project2">
-          <div class="project2-text">
-            <h3>CSC 491 - Neural Networks</h3>
-            <p>Spring 2026</p>
-          </div>
-          <div class="project2-text">
-            <p></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-section">
-        <div class="project2">
-          <div class="project2-text">
-            <h3>ST 434 - Applied Time Series</h3>
-            <p>Fall 2026</p>
-          </div>
-          <div class="project2-text">
-            <p></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+        // Listen for scroll events
+        window.addEventListener('scroll', handleScroll);
+        
+        // Run once on page load
+        handleScroll();
+    </script>
 </body>
 </html>
 

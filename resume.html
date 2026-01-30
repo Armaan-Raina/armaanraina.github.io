@@ -1,32 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Resume</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armaan's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-ink-light: #4a4a4a;
+            --color-ink-faded: #6b6b6b;
+            --color-cream: #faf9f7;
+            --color-accent: #8b7355;
+            --color-accent-light: #c4a77d;
+            --color-border: #e5e2dc;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Nunito Sans', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-ink);
+            background-color: var(--color-cream);
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 0.1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-ink-light);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 2.5rem 1.5rem;
+            text-align: center;
+            background: var(--color-cream);
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .page-description {
+            font-size: 1.1rem;
+            color: var(--color-ink-faded);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Resume Section */
+        .resume-section {
+            padding: 1rem 2.5rem 4rem;
+            min-height: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .resume-container {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+        }
+
+        .resume-download {
+            background: var(--color-cream);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .resume-download p {
+            font-size: 1.1rem;
+            color: var(--color-ink-faded);
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .download-btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .download-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .resume-preview {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .resume-preview embed {
+            width: 100%;
+            height: 1000px;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 2.5rem;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            background: var(--color-cream);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--color-ink-faded);
+            letter-spacing: 0.02em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-inner {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            .page-header {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .resume-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .resume-preview embed {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="projects.html">Personal Projects</a></li>
-      <li><a href="resume.html">Resume</a></li>
-      <li><a href="other.html">Other</a></li>
-    </ul>
-  </nav>
-</header>
-<main>
-    <div class = "resume-container">
-    <h1>Resume</h1>
-    <p>Download my resume <a href="files/Armaan Raina Resume.pdf" target="_blank">here</a></p>
-    <embed 
-        src="files/Armaan Raina Resume.pdf#toolbar=0&navpanes=0&scrollbar=0" 
-        type="application/pdf" 
-        width="50%" 
-        height="700px" 
-        style="border: none;" />
-    </div>
-</main>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">Armaan Raina</a>
+            <ul class="nav-links">
+                <li><a href="research.html">Research</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="other.html">Other</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="section-inner">
+            <h1 class="page-title">Resume</h1>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="resume-section">
+        <div class="resume-container">
+            <div class="resume-download">
+                <p>
+                    Download my full resume to learn more about my experience in research, leadership, and technical skills.
+                </p>
+                <a href="files/Armaan Raina Resume.pdf" target="_blank" class="download-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    Download Resume
+                </a>
+            </div>
+
+            <div class="resume-preview">
+                <embed
+                    src="files/Armaan Raina Resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                    type="application/pdf"
+                    width="100%"
+                    height="1000px" />
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>

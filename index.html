@@ -1,128 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Home</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armaan's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-ink-light: #4a4a4a;
+            --color-ink-faded: #6b6b6b;
+            --color-cream: #faf9f7;
+            --color-cream-dark: #f0eee9;
+            --color-accent: #8b7355;
+            --color-accent-light: #c4a77d;
+            --color-border: #e5e2dc;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Nunito Sans', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-ink);
+            background-color: var(--color-cream);
+            -webkit-font-smoothing: antialiased;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 0.1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-ink-light);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2.5rem 4rem;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-content h1 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 400;
+            color: var(--color-ink-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-intro {
+            font-size: 1.05rem;
+            color: var(--color-ink-faded);
+            max-width: 540px;
+            line-height: 1.8;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            object-position: 30% center;
+            filter: grayscale(15%) contrast(1.02);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--color-accent-light);
+            z-index: -1;
+        }
+
+        /* Sections */
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 3.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Research Section */
+        .research {
+            padding: 6rem 2.5rem;
+        }
+
+        .research-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .research-text h3 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+        }
+
+        .research-text p {
+            color: var(--color-ink-faded);
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+        }
+
+        .research-text p strong {
+            color: var(--color-ink);
+            font-weight: 600;
+        }
+
+        .research-areas {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .research-area {
+            padding: 2rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .research-area-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--color-accent-light);
+            line-height: 1;
+        }
+
+        .research-area h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .research-area p {
+            font-size: 0.9rem;
+            color: var(--color-ink-faded);
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 2.5rem;
+            background: var(--color-ink);
+            color: white;
+        }
+
+        .projects .section-label {
+            color: var(--color-accent-light);
+        }
+
+        .projects .section-title {
+            color: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent-light);
+            padding: 0.35rem 0.75rem;
+            border: 1px solid var(--color-accent-light);
+            margin-bottom: 1.25rem;
+        }
+
+        .project-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+        }
+
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2.5rem;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            color: var(--color-ink-faded);
+            max-width: 560px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--color-border);
+            transition: all 0.2s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .contact-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 2.5rem;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--color-ink-faded);
+            letter-spacing: 0.02em;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .research-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .research,
+            .projects,
+            .contact {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="projects.html">Personal Projects</a></li>
-      <li><a href="resume.html">Resume</a></li>
-      <li><a href="other.html">Other</a></li>
-    </ul>
-  </nav>
-</header>
-<main>
-  <section id="Home">
-    <div class="home-container">
-      <div class="home-text">
-        <h1 id="intro-text"></h1>
-         <p id="intro-body" class="hidden fade-in">
-           Welcome to my portfolio!
-           I'm a third year statistics and computer science student at North Carolina State University interested in the human brain.
-           In the past few years I've become increasingly interested in neural interfaces, which is what I hope to explore further as I progress
-           in undergrad and beyond. If we share any common interests or you'd like to learn more about any of my experiences, I'd love to hear from you!
-         </p>
-         <p id="excitement-text" class="fade-in" style="margin-top: 20px; font-size: 1.2em; color: var(--text-secondary);">
-           In my freetime I enjoy <span id="rotating-text"></span>
-         </p>
-         <div class="spike-train">
-           <div class="spike-bar"></div>
-           <div class="spike-bar"></div>
-           <div class="spike-bar"></div>
-           <div class="spike-bar"></div>
-           <div class="spike-bar"></div>
-         </div>
-      </div>
-      <img src="images/Headshot.JPG" alt="Profile Picture" class="pfp">
-    </div>
-  </section>
-  <div class="social-icons">
-  <a href="https://www.linkedin.com/in/armaanraina/" target="_blank" class="social-link">
-    <i class="fab fa-linkedin"></i>
-  </a>
-  <a href="https://github.com/Armaan-Raina" target="_blank" class="social-link">
-    <i class="fab fa-github"></i>
-  </a>
-  <a href="mailto:araina3@ncsu.edu" class="social-link">
-    <i class="fas fa-envelope"></i>
-  </a>
-</div>
-</main>
-<script>
-  const text = "Hi, I'm Armaan";
-  const textElement = document.getElementById("intro-text");
-  const bodyElement = document.getElementById("intro-body");
-  const excitementElement = document.getElementById("excitement-text");
-  const rotatingElement = document.getElementById("rotating-text");
-  let index = 0;
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">Armaan Raina</a>
+            <ul class="nav-links">
+                <li><a href="research.html">Research</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="other.html">Other</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  const interests = ["being outside", "philosophy", "FC Barcelona (sometimes)", "learning", "building", "cooking", "thrifting"];
-  let currentInterestIndex = 0;
-  let currentCharIndex = 0;
-  let isDeleting = false;
-
-  function typeText() {
-    if (index < text.length) {
-      textElement.textContent += text.charAt(index);
-      index++;
-      setTimeout(typeText, 100);
-    } else {
-      // After typing is done, wait a bit, then fade in body text
-      setTimeout(() => {
-        bodyElement.classList.remove("hidden");
-        bodyElement.classList.add("fade-in");
-        // Start the rotating text animation after body text appears
-        setTimeout(() => {
-          excitementElement.style.opacity = "1";
-          typeInterest();
-        }, 1000);
-      }, 500);
-    }
-  }
-
-  function typeInterest() {
-    const currentInterest = interests[currentInterestIndex];
-    const cursor = "|";
-
-    if (!isDeleting) {
-      // Typing effect
-      rotatingElement.textContent = currentInterest.substring(0, currentCharIndex + 1) + cursor;
-      currentCharIndex++;
-
-      if (currentCharIndex === currentInterest.length) {
-        // Pause at the end of the word
-        setTimeout(() => {
-          isDeleting = true;
-          typeInterest();
-        }, 2000);
-        return;
-      }
-    } else {
-      // Backspacing effect
-      rotatingElement.textContent = currentInterest.substring(0, currentCharIndex) + cursor;
-      currentCharIndex--;
-
-      if (currentCharIndex < 0) {
-        isDeleting = false;
-        currentInterestIndex = (currentInterestIndex + 1) % interests.length;
-        // Pause before starting the next word
-        setTimeout(typeInterest, 500);
-        return;
-      }
-    }
-
-    const speed = isDeleting ? 35 : 70;
-    setTimeout(typeInterest, speed);
-  }
-
-  window.onload = typeText;
-
-</script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1>Hi, I'm Armaan.<br></h1>
+                <p class="hero-intro">
+                    Welcome to my portfolio! I'm a third-year computer science and statistics student at NC State University interested in the human brain and how it allows us to interact with and percieve the world.
+                    I have a strong interest in neural interfaces, particularly closed-loop applications which I hope to explore throughout my time in undergrad and beyond.
+                </p>
+            </div>
+            <div class="hero-image">
+                <img src="images/frontpic.webp" alt="Armaan Raina">
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-inner">
+            <p class="section-label">Get in Touch</p>
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="contact-text">
+                If we share any common interests or you'd like to learn more about any of my experiences, I'd love to hear from you!
+            </p>
+            <div class="contact-links">
+                <a href="mailto:araina3@ncsu.edu" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    Email
+                </a>
+                <a href="https://www.linkedin.com/in/armaanraina" class="contact-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

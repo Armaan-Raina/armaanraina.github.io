@@ -1,85 +1,1043 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Other</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armaan's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-ink-light: #4a4a4a;
+            --color-ink-faded: #6b6b6b;
+            --color-cream: #faf9f7;
+            --color-accent: #8b7355;
+            --color-accent-light: #c4a77d;
+            --color-border: #e5e2dc;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Nunito Sans', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-ink);
+            background-color: var(--color-cream);
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 0.1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-ink-light);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 2.5rem 2rem;
+            text-align: center;
+            background: var(--color-cream);
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .page-description {
+            font-size: 1.1rem;
+            color: var(--color-ink-faded);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Sections */
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 3.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Other Activities */
+        .other-section {
+            padding: 2rem 2.5rem 6rem;
+        }
+
+        .activity-group {
+            margin-bottom: 4rem;
+        }
+
+        .activity-title {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 2rem;
+        }
+
+        .activity-description {
+            font-size: 1.1rem;
+            color: var(--color-ink-faded);
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        .activity-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .activity-item {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .activity-item.reverse {
+            grid-template-columns: 1fr 300px;
+        }
+
+        .activity-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .activity-content h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            margin-bottom: 1rem;
+        }
+
+        .activity-content p {
+            color: var(--color-ink-faded);
+            margin-bottom: 1rem;
+        }
+
+        .activity-link {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Activity Cards */
+        .activity-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .activity-card {
+            background: var(--color-cream);
+            border: 1px solid var(--color-border);
+            padding: 2.5rem;
+            border-radius: 8px;
+        }
+
+        .activity-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            margin-bottom: 1rem;
+        }
+
+        .activity-duration {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .activity-card p {
+            font-size: 0.95rem;
+            color: var(--color-ink-faded);
+            line-height: 1.6;
+        }
+
+        /* Interactive Visualizations */
+        .visualizations-section {
+            margin-top: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .visualizations-title {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .visualizations-intro {
+            font-size: 1.05rem;
+            color: var(--color-ink-faded);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .visualization-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .visualization-link-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .visualization-link-card:hover {
+            border-color: var(--color-accent-light);
+        }
+
+        .visualization-link-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-ink);
+            margin-bottom: 1rem;
+        }
+
+        .visualization-link-card p {
+            color: var(--color-ink-faded);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Creative Section (Food & Photography) */
+        .creative-section {
+            margin-top: 5rem;
+        }
+
+        .creative-title {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--color-ink);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .creative-intro {
+            font-size: 1.05rem;
+            color: var(--color-ink-faded);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Gallery Container */
+        .gallery-container {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Tab Navigation */
+        .gallery-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--color-border);
+            background: var(--color-cream);
+        }
+
+        .gallery-tab {
+            flex: 1;
+            padding: 1.5rem 2rem;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-ink-faded);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .gallery-tab:hover {
+            color: var(--color-ink);
+        }
+
+        .gallery-tab.active {
+            color: var(--color-ink);
+            background: white;
+        }
+
+        .gallery-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--color-accent);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding: 2.5rem;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInTab 0.4s ease;
+        }
+
+        @keyframes fadeInTab {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-description {
+            color: var(--color-ink-faded);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* Gallery Carousel Container */
+        .gallery {
+            position: relative;
+            height: 580px;
+            overflow: hidden;
+            padding: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gallery-row {
+            display: flex;
+            gap: 1rem;
+            animation: scroll 120s linear infinite;
+            width: max-content;
+        }
+
+        .gallery-row:nth-child(2) {
+            animation: scroll-reverse 120s linear infinite;
+        }
+
+        .gallery-row:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scroll-reverse {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            width: 280px;
+            height: 280px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-accent-light);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -3rem;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--color-accent-light);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 1rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-prev {
+            left: 1rem;
+        }
+
+        .lightbox-next {
+            right: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 2.5rem;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            background: var(--color-cream);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--color-ink-faded);
+            letter-spacing: 0.02em;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .activity-item {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .activity-item.reverse {
+                grid-template-columns: 1fr;
+            }
+
+            .visualization-links {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                height: 460px;
+            }
+
+            .gallery-item {
+                width: 220px;
+                height: 220px;
+            }
+
+            .gallery-row {
+                animation-duration: 100s;
+            }
+
+            .gallery-tab {
+                padding: 1.25rem 1.5rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            .page-header {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .other-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .activity-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .section-inner {
+                padding: 0 1.5rem;
+            }
+
+            .gallery {
+                height: 380px;
+            }
+
+            .gallery-item {
+                width: 180px;
+                height: 180px;
+            }
+
+            .gallery-row {
+                animation-duration: 90s;
+            }
+
+            .gallery-tab {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .tab-content {
+                padding: 1.5rem;
+            }
+
+            .lightbox-nav {
+                padding: 0.75rem;
+                font-size: 1.2rem;
+            }
+
+            .lightbox-close {
+                font-size: 2rem;
+                top: -2.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .gallery {
+                height: 320px;
+            }
+
+            .gallery-item {
+                width: 150px;
+                height: 150px;
+            }
+
+            .gallery-row {
+                animation-duration: 80s;
+            }
+
+            .gallery-tabs {
+                flex-direction: column;
+            }
+
+            .gallery-tab {
+                padding: 0.875rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="projects.html">Personal Projects</a></li>
-      <li><a href="resume.html">Resume</a></li>
-      <li><a href="other.html">Other</a></li>
-    </ul>
-  </nav>
-</header>
-<main>
-  <section id="other">
-    <h1>Other Involvement/ Interests</h1>
-
-    <div class="activity-section">
-      <h2>Caldwell Fellows Program - NC State</h2>
-      <p>As a Caldwell Fellow, I've had the opportunity to engage in meaningful service-learning experiences that combine academic growth with community impact.
-      Here are a few of my favorite experiences:</p>
-
-      <div class="project4">
-        <img src="files/CCL.JPG" alt="Center for Creative Leadership" class="project4-image">
-        <div class="project4-text">
-          <h3>Center for Creative Leadership</h3>
-          <p>This past fall break, I had the opportunity to attend the Center for Creative Leadership in Greensboro, NC with my cohort of fellows. 
-            I learned a lot about different leadership styles and how to lean into my personal strengths during my time there.
-          </p>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">Armaan Raina</a>
+            <ul class="nav-links">
+                <li><a href="research.html">Research</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="other.html">Other</a></li>
+            </ul>
         </div>
-      </div>
-      <br><br>
+    </nav>
 
-      <div class="project4">
-        <div class="project4-text">
-          <h3>Interfaith Food Shuttle Farm</h3>
-          <p>My time with the Interfaith Food Shuttle Farm taught me so much about the difficulties of growing fresh produce at scale.
-            It gave me a new appreciation for the work that goes into growing food without pesticides, herbicides, or a large team of people.
-            Spending hours fanning through cabbage leaves looking for worms, mulching the shallow roots of blueberry trees, and spreading
-            wheel barrows of leaf mulch on fields (and in my shoes) has changed the way I see a fully stocked grocery store forever.
-            Interfaith has pantries and farms across central North Carolina, I'd highly encourage anyone local to spend a day with them.
-            Check out their website <a href="https://interfaithfoodshuttle.org/">here</a>.
-          </p>
-          <br><br>
-          <p>On the right is a picture of the awesome service-learning team I volunteered with at Interfaith.</p>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="section-inner">
+            <h1 class="page-title">Other Involvements & Interests</h1>
         </div>
-        <img src="images/farm.jpeg" alt="Farm" class="project4-image">
-      </div>
+    </section>
+
+    <!-- Other Activities Section -->
+    <section class="other-section">
+        <div class="section-inner">
+
+            <!-- Caldwell Fellows -->
+            <div class="activity-group">
+                <h3 class="activity-title">Caldwell Fellows Program</h3>
+                <p class="activity-description">As a Caldwell Fellow, I've had the opportunity to engage in meaningful service-learning experiences that combine academic growth with community impact. Here are a few of my favorite experiences:</p>
+
+                <div class="activity-grid">
+                    <!-- Center for Creative Leadership -->
+                    <div class="activity-item">
+                        <img src="files/CCL.JPG" alt="Center for Creative Leadership" class="activity-image">
+                        <div class="activity-content">
+                            <h4>Center for Creative Leadership</h4>
+                            <p>This past fall break, I had the opportunity to attend the Center for Creative Leadership in Greensboro, NC with my cohort of fellows. I learned a lot about different leadership styles and how to lean into my personal strengths during my time there.</p>
+                        </div>
+                    </div>
+
+                    <!-- Interfaith Food Shuttle Farm -->
+                    <div class="activity-item reverse">
+                        <div class="activity-content">
+                            <h4>Interfaith Food Shuttle Farm</h4>
+                            <p>My time with the Interfaith Food Shuttle Farm taught me so much about the difficulties of growing fresh produce at scale. 
+                                It gave me a new appreciation for the work that goes into growing food without pesticides, herbicides, or a large team of people.
+                                 Spending hours fanning through cabbage leaves looking for worms, mulching the shallow roots of blueberry trees, and spreading wheel barrows 
+                                 of leaf mulch on fields (and in my shoes) has changed the way I see a fully stocked grocery store forever. 
+                                 Interfaith has pantries and farms across central North Carolina, 
+                                On the right is a picture of the awesome service-learning team I volunteered with at Interfaith.
+                            <br><br>
+                            I'd highly encourage anyone local to spend a day with them.</p>
+                            <a href="https://interfaithfoodshuttle.org/" class="activity-link">Visit Interfaith Food Shuttle →</a>
+                        </div>
+                        <img src="images/farm.jpeg" alt="Interfaith Food Shuttle Farm" class="activity-image">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Activities Grid -->
+            <div class="activity-cards">
+                <div class="activity-card">
+                    <h4>Pack Bionics</h4>
+                    <p class="activity-duration">Aug. 2023 - Dec. 2024</p>
+                    <p>From August 2023 - December 2024, I was a member of the software subteam working on simulations and data analysis for prosthetic leg development.
+                    </p>
+                </div>
+
+                <div class="activity-card">
+                    <h4>Neurobiology Teaching Assistant</h4>
+                    <p class="activity-duration">Spring 2024</p>
+                    <p>As a TA for BIO 488/588, I helped grade exams, held study/ exam prep sessions, and built several interactive visualizations to help students understand visual pathways.</p>
+                </div>
+            </div>
+
+            <!-- Interactive Visualizations -->
+            <div class="visualizations-section">
+                <h2 class="visualizations-title">Interactive Visualizations</h2>
+                <p class="visualizations-intro">I made these visualizations for my students in neurobiology based on topics I struggled with when I took the class.</p>
+
+                <div class="visualization-links">
+                    <div class="visualization-link-card">
+                        <h4>Optic Nerve Transections</h4>
+                        <p>Interactive 3D visualization demonstrating the effects of optic nerve damage on visual pathways.</p>
+                        <a href="https://www.glowscript.org/#/user/araina3/folder/BIO488StudyResources/program/OpticNerveTransections" target="_blank" class="activity-link">View Visualization →</a>
+                    </div>
+
+                    <div class="visualization-link-card">
+                        <h4>Eye Circuitry Visualization</h4>
+                        <p>3D model illustrating the neural connections and pathways within the visual system.</p>
+                        <a href="https://www.glowscript.org/#/user/araina3/folder/BIO488StudyResources/program/VisualizationofEyeCircuitry" target="_blank" class="activity-link">View Visualization →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food & Photography -->
+            <div class="creative-section">
+                <h2 class="creative-title">Interests</h2>
+                <p class="creative-intro">A collection the best meals I've eaten and photos I've taken.</p>
+
+                <div class="gallery-container">
+                    <div class="gallery-tabs">
+                        <button class="gallery-tab active" onclick="switchTab('food')">
+                            Food
+                        </button>
+                        <button class="gallery-tab" onclick="switchTab('photo')">
+                            Photography
+                        </button>
+                    </div>
+
+                    <!-- Food Tab -->
+                    <div class="tab-content active" id="food-tab">
+                        <div class="gallery food-gallery" data-gallery="food" id="food-gallery"></div>
+                    </div>
+
+                    <!-- Photography Tab -->
+                    <div class="tab-content" id="photo-tab">
+                        <div class="gallery photo-gallery" data-gallery="photo" id="photo-gallery"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">‹</button>
+            <img id="lightbox-img" src="" alt="">
+            <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">›</button>
+        </div>
     </div>
 
+    <script>
+        let currentGallery = [];
+        let currentIndex = 0;
 
-    <div class="activity-section">
-      <h2>Pack Bionics</h2>
-      <p>From August 2023 - December 2024, I was a member of the software subteam working on simulations and 
-        data analysis for prosthetic leg development. 
-      </p>
-    </div>
+        // Food images
+        const foodImages = [
+            { src: 'images/pizza.webp', alt: 'Pizza' },
+            { src: 'images/dumplings.webp', alt: 'Dumplings' },
+            { src: 'images/noodles.webp', alt: 'Noodles' },
+            { src: 'images/ribeye.webp', alt: 'Ribeye' },
+            { src: 'images/shawarma.webp', alt: 'Shawarma' },
+            { src: 'images/tostadas.webp', alt: 'Tostadas' },
+            { src: 'images/inandout.webp', alt: 'In-N-Out' },
+            { src: 'images/mac.webp', alt: 'Mac and Cheese' },
+            { src: 'images/pchick.webp', alt: 'Chicken' },
+            { src: 'images/sugarfire.webp', alt: 'BBQ' },
+            { src: 'images/terrybs.webp', alt: "Terry B's" },
+            { src: 'images/pappys.webp', alt: "Pappy's" },
+            { src: 'images/mex.webp', alt: 'Mexican Food' },
+            { src: 'images/pocohavana.webp', alt: 'Poco Havana' },
+            { src: 'images/tripdip.webp', alt: 'Triple Dip' },
+            { src: 'images/hamachi.webp', alt: 'Hamachi' },
+            { src: 'images/poutin.webp', alt: 'Poutine' },
+            { src: 'images/pupusas.webp', alt: 'Pupusas' },
+            { src: 'images/dank.jpg', alt: 'Dank' },
+            { src: 'images/hurst.webp', alt: 'Steak' },
+            { src: 'images/picnic.webp', alt: 'Picnic' },
+            { src: 'images/youarewhatyoueat.webp', alt: 'Jerk' }
+        ];
 
+        // Photography images
+        const photoImages = [
+            { src: 'images/mountains.webp', alt: 'Mountains' },
+            { src: 'images/canyon.webp', alt: 'Canyon' },
+            { src: 'images/falls.webp', alt: 'Waterfall' },
+            { src: 'images/bridge.webp', alt: 'Bridge' },
+            { src: 'images/reflection.webp', alt: 'Reflection' },
+            { src: 'images/riverview.webp', alt: 'River View' },
+            { src: 'images/mayanruins.webp', alt: 'Mayan Ruins' },
+            { src: 'images/water.webp', alt: 'Water' },
+            { src: 'images/minifalls.webp', alt: 'Small Waterfall' },
+            { src: 'images/grass.webp', alt: 'Grass' },
+            { src: 'images/blue.webp', alt: 'Blue Sky' },
+            { src: 'images/purple.webp', alt: 'Purple Sunset' },
+            { src: 'images/pink.webp', alt: 'Pink Sky' },
+            { src: 'images/layers.webp', alt: 'Mountain Layers' },
+            { src: 'images/cotton.webp', alt: 'Cotton Clouds' },
+            { src: 'images/align.webp', alt: 'Alignment' },
+            { src: 'images/history.webp', alt: 'Historic Site' },
+            { src: 'images/spawnpoint.webp', alt: 'Spawn Point' },
+            { src: 'images/whenIwasledtoyou.webp', alt: 'When I Was Led To You' },
+            { src: 'images/wildwildwest.webp', alt: 'Wild Wild West' },
+            { src: 'images/creekreflection.webp', alt: 'Creek Reflection' },
+            { src: 'images/mountainsunrise.webp', alt: 'Mountain Sunrise' },
+            { src: 'images/quarry.webp', alt: 'Quarry' },
+            { src: 'images/bean.webp', alt: 'Bean' },
+            { src: 'images/coco.webp', alt: 'Beach' },
+            { src: 'images/shiny.jpg', alt: 'Beach' }
+        ];
 
-    <div class="activity-section">
-      <h2>TA - Neurobiology</h2>
-      <p>As a Teaching Assistant for Neurobiology, I created interactive 3D visualizations to help students better understand complex neural concepts. Here are two Web VPython programs I developed:</p>
-      <br><br>
+        // Create carousel with two rows
+        function createCarousel(containerId, images) {
+            const container = document.getElementById(containerId);
+            
+            // Split images into two rows
+            const midpoint = Math.ceil(images.length / 2);
+            const row1Images = images.slice(0, midpoint);
+            const row2Images = images.slice(midpoint);
+            
+            // Create first row
+            const row1 = document.createElement('div');
+            row1.className = 'gallery-row';
+            
+            // Create items twice for infinite loop
+            for (let i = 0; i < 2; i++) {
+                row1Images.forEach((img, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.dataset.index = index;
+                    item.dataset.gallery = containerId;
+                    
+                    const imgEl = document.createElement('img');
+                    imgEl.src = img.src;
+                    imgEl.alt = img.alt;
+                    
+                    item.appendChild(imgEl);
+                    row1.appendChild(item);
+                });
+            }
+            
+            // Create second row
+            const row2 = document.createElement('div');
+            row2.className = 'gallery-row';
+            
+            // Create items twice for infinite loop
+            for (let i = 0; i < 2; i++) {
+                row2Images.forEach((img, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.dataset.index = midpoint + index;
+                    item.dataset.gallery = containerId;
+                    
+                    const imgEl = document.createElement('img');
+                    imgEl.src = img.src;
+                    imgEl.alt = img.alt;
+                    
+                    item.appendChild(imgEl);
+                    row2.appendChild(item);
+                });
+            }
+            
+            container.appendChild(row1);
+            container.appendChild(row2);
+        }
 
-      <h3>Optic Nerve Transections</h3>
-      <p>This interactive visualization demonstrates the effects of optic nerve transections on visual pathways.</p>
-      <iframe src="https://www.glowscript.org/#/user/araina3/folder/BIO488StudyResources/program/OpticNerveTransections" width="100%" height="800" frameborder="0"></iframe>
-      <br><br>
+        // Initialize galleries
+        createCarousel('food-gallery', foodImages);
+        createCarousel('photo-gallery', photoImages);
 
-      <h3>Visualization of Eye Circuitry</h3>
-      <p>An interactive 3D model showing the neural circuitry of the eye and visual system.</p>
-      <iframe src="https://www.glowscript.org/#/user/araina3/folder/BIO488StudyResources/program/VisualizationofEyeCircuitry" width="100%" height="800" frameborder="0"></iframe>
-    </div>
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.gallery-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Activate clicked button
+            event.target.classList.add('active');
+        }
 
-    <div class="wave-divider"></div>
+        // Initialize gallery items click handlers
+        setTimeout(() => {
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const galleryId = this.dataset.gallery;
+                    const images = galleryId === 'food-gallery' ? foodImages : photoImages;
+                    
+                    // Build current gallery array
+                    currentGallery = images.map(img => img.src);
+                    
+                    currentIndex = parseInt(this.dataset.index);
+                    openLightbox(currentGallery[currentIndex]);
+                });
+            });
+        }, 100);
 
-  </section>
-</main>
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            
+            // Loop around
+            if (currentIndex < 0) {
+                currentIndex = currentGallery.length - 1;
+            } else if (currentIndex >= currentGallery.length) {
+                currentIndex = 0;
+            }
+            
+            document.getElementById('lightbox-img').src = currentGallery[currentIndex];
+        }
+
+        // Close lightbox on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                changeImage(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeImage(1);
+            }
+        });
+
+        // Close lightbox when clicking outside image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
