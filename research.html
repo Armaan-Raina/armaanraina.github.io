@@ -399,11 +399,39 @@
             .section-inner {
                 padding: 0 1.5rem;
             }
+
+            .publication-card {
+                grid-template-columns: 1fr !important;
+            }
+
+            .publication-card img {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
         }
 
         @media (max-width: 600px) {
             .nav-links {
                 display: none;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .publication-card {
+                padding: 1.5rem;
+            }
+
+            .citation-link {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+                margin: -0.5rem;
             }
         }
     </style>
@@ -484,10 +512,9 @@
                     <div class="research-details">
                         <h5>Key Achievements</h5>
                         <ul>
-                            <li>Designed functional concepts of modification at scale</li>
-                            <li></li>
-                            <li>Designed functional electrode modifications</li>
-                            <li>Studied medical device development lifecycle</li>
+                            <li>Designed functional concepts of modification at 50 micron scale</li>
+                            <li>Researched manufacturing capabilities for small scale modifications</li>
+                            <li>Studied medical device/ regulatory development lifecycle</li>
                         </ul>
                         <div class="skills">
                             <span class="skill-tag">Medical Devices</span>
@@ -510,16 +537,16 @@
                     <div class="research-details">
                         <h5>Key Achievements</h5>
                         <ul>
-                            <li>Developed data processing pipelines</li>
-                            <li>Conducted literature reviews on HRI</li>
-                            <li>Analyzed human-robot interaction patterns</li>
-                            <li>Studied autonomy and trust in robotics</li>
+                            <li>Developed data processing pipelines for HRI experiments</li>
+                            <li>Conducted literature reviews optimal learning conditions</li>
+                            <li>Presented findings on autonomy and trust in robotics</li>
+                            <li>Conducted manual QAing of surveys from various experiments</li>
                         </ul>
                         <div class="skills">
-                            <span class="skill-tag">Human Factors</span>
+                            <span class="skill-tag">Python</span>
                             <span class="skill-tag">Data Processing</span>
                             <span class="skill-tag">Literature Review</span>
-                            <span class="skill-tag">HRI</span>
+                            <span class="skill-tag">R</span>
                         </div>
                     </div>
                     <div class="research-area">
@@ -527,7 +554,7 @@
                         <div>
                             <h4>LACELab - NC State</h4>
                             <p>Aug. 2023 - Dec. 2023<br><br>
-                            First research experience in human factors psychology, working on human-robot autonomy teaming.</p>
+                            First research experience in undergrad, assisting in projects dealing with optimal learning conditions and trust in human-robot interaction.</p>
                         </div>
                     </div>
                 </div>
@@ -545,7 +572,7 @@
                                 make it useable, and filter it. A variety of biological signal types (spiking, mEPSC, and passive membrane potential) each of 
                                 which capture different aspects of neuronal function were explored. I then tested the model accuracies of various machine learning algorithms 
                                 across features extracted from the different signal types, indicating which signal type encodes the state of estrous cycle phase best. This more broadly 
-                                represents an exploration of how best to computationally represent small scale neuromodulatory differences in cells within the brain.<br><br>On the right is a picture of my poster presentation at SYNAPSE 2025, alongside this, I was selected to give a lightning talk which you can listen to using the link below..</p>
+                                represents an exploration of how best to computationally represent small scale neuromodulatory differences in cells within the brain.<br><br>On the right is a picture of my poster presentation at SYNAPSE 2025, alongside this, I was selected to give a lightning talk which you can listen to using the link below.</p>
                             <a href="https://youtu.be/9Q5Z3TM_CLA" style="color: var(--color-accent); text-decoration: none; font-weight: 500; margin-top: 1rem; display: inline-block;">Watch Presentation →</a>
                         </div>
                         <img src="images/poster2.jpg" alt="Estrous Phase Classification Poster" style="width: 100%; height: auto; border-radius: 8px;">
