@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armaan's Portfolio</title>
+    <title>Armaan Raina</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -93,6 +93,35 @@
 
         .nav-links a:hover {
             color: var(--color-accent);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--color-ink);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
 
         /* Page Header */
@@ -492,8 +521,46 @@
         }
 
         @media (max-width: 600px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: rgba(250, 249, 247, 0.98);
+                backdrop-filter: blur(8px);
+                flex-direction: column;
+                gap: 0;
+                padding: 1.5rem 0;
+                border-bottom: 1px solid var(--color-border);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                pointer-events: none;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .nav-links li {
+                text-align: center;
+                padding: 0.75rem 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                display: block;
             }
 
             .page-title {
@@ -519,6 +586,11 @@
     <nav>
         <div class="nav-inner">
             <a href="index.html" class="nav-name">Armaan Raina</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="research.html">Research</a></li>
                 <li><a href="projects.html">Projects</a></li>
@@ -531,15 +603,13 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="section-inner">
-            <h1 class="page-title">Projects</h1>
+            <h1 class="page-title">Personal Projects & Extracurriculars</h1>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="section-inner">
-            <p class="section-label">Selected Work</p>
-            <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
                 <div class="project-wrapper">
                     <div class="project-details">
@@ -623,7 +693,6 @@
     <!-- Coursework Section -->
     <section class="coursework-section" id="coursework">
         <div class="section-inner">
-            <p class="section-label">Academic Journey</p>
             <h2 class="section-title">Coursework</h2>
             <p class="coursework-intro">
                 A collection of the most interesting courses I've taken thus far in my undergraduate degree.
@@ -634,6 +703,11 @@
                     <h3>Neural Interface Engineering</h3>
                     <p>This class covered biophysics, considerations about stimulation/ recording electrode design, and a deep dive into existing applications (pacemakers, retinal implants, DBS, etc.) . <br>
                         <b>Main takeaway:</b> material scientists are unbelievably underappreciated.</p>
+                </div>
+                <div class="coursework-card">
+                    <span class="tag">ECE 492</span>
+                    <h3>Physical AI with Brain-Inspired Electronics</h3>
+                    <p>Exploring neuromorphic computing and brain-inspired hardware approaches to artificial intelligence and machine learning.</p>
                 </div>
                 <div class="coursework-card">
                     <span class="tag">ST 422</span>
@@ -648,30 +722,25 @@
                         <br><b>Main takeaway:</b> Plasticity is an extremely powerful concept.</p>
                 </div>
                 <div class="coursework-card">
+                    <span class="tag">ST 434</span>
+                    <h3>Applied Time Series</h3>
+                    <p>Analysis and modeling of time-dependent data, including autocorrelation, ARIMA models, spectral analysis, and forecasting techniques.</p>
+                </div>
+                <div class="coursework-card">
+                    <span class="tag">CSC 491</span>
+                    <h3>Neural Networks</h3>
+                    <p>Fundamentals of artificial neural networks, deep learning architectures, training algorithms, and applications in pattern recognition and data analysis.</p>
+                </div>
+                <div class="coursework-card">
+                    <span class="tag">PHI 347</span>
+                    <h3>Neuroscience and Philosophy</h3>
+                    <p>Exploring philosophical questions at the intersection of neuroscience and philosophy of mind, including consciousness, free will, and the nature of mental states.</p>
+                </div>
+                <div class="coursework-card">
                     <span class="tag">ECD 310H</span>
                     <h3>Caldwell Fellows Seminar</h3>
                     <p>This class covered a wide array of topics with a focus on servant leadership and developing a personal definition of leadership.
                         <br><b>Main takeaway:</b> The importance of understanding who you are serving and why you are serving them before actually taking action.</p>
-                </div>
-            </div>
-
-            <!-- Upcoming Coursework -->
-            <h3 class="upcoming-subtitle">Upcoming Coursework</h3>
-            <div class="upcoming-grid">
-                <div class="upcoming-card">
-                    <span class="tag">ECE 492</span>
-                    <h4>Physical AI with Brain-Inspired Electronics</h4>
-                    <p class="course-semester">Spring 2026</p>
-                </div>
-                <div class="upcoming-card">
-                    <span class="tag">CSC 491</span>
-                    <h4>Neural Networks</h4>
-                    <p class="course-semester">Spring 2026</p>
-                </div>
-                <div class="upcoming-card">
-                    <span class="tag">ST 434</span>
-                    <h4>Applied Time Series</h4>
-                    <p class="course-semester">Fall 2026</p>
                 </div>
             </div>
         </div>
@@ -708,6 +777,31 @@
         
         // Run once on page load
         handleScroll();
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>

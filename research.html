@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armaan's Portfolio - Research</title>
+    <title>Armaan Raina</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -94,6 +94,35 @@
             color: var(--color-accent);
         }
 
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--color-ink);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
         .page-header {
             padding: 8rem 2.5rem 4rem;
             text-align: center;
@@ -180,6 +209,12 @@
             align-items: start;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 2;
+        }
+
+        .research-area:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: var(--color-accent-light);
         }
 
         .research-area-wrapper.active .research-details {
@@ -284,6 +319,23 @@
             background: var(--color-cream);
             border: 1px solid var(--color-border);
             border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .publication-card.highlight {
+            animation: highlightFlash 1.5s ease-out;
+        }
+
+        @keyframes highlightFlash {
+            0% {
+                background-color: var(--color-cream);
+            }
+            15% {
+                background-color: rgba(139, 115, 85, 0.1);
+            }
+            100% {
+                background-color: var(--color-cream);
+            }
         }
 
         .publication-card h4 {
@@ -412,8 +464,46 @@
         }
 
         @media (max-width: 600px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: rgba(250, 249, 247, 0.98);
+                backdrop-filter: blur(8px);
+                flex-direction: column;
+                gap: 0;
+                padding: 1.5rem 0;
+                border-bottom: 1px solid var(--color-border);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                pointer-events: none;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .nav-links li {
+                text-align: center;
+                padding: 0.75rem 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                display: block;
             }
 
             .page-title {
@@ -440,6 +530,11 @@
     <nav>
         <div class="nav-inner">
             <a href="index.html" class="nav-name">Armaan Raina</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="research.html">Research</a></li>
                 <li><a href="projects.html">Projects</a></li>
@@ -473,14 +568,14 @@
                             <span class="skill-tag">Data Analysis</span>
                         </div>
                     </div>
-                    <div class="research-area">
+                    <a href="#meitzen-details" class="research-area" style="text-decoration: none; color: inherit; cursor: pointer;">
                         <span class="research-area-number">01</span>
                         <div>
                             <h4>Meitzen Lab - NC State</h4>
                             <p>Jan. 2024 - Present<br><br>
                             Using single-cell neuron recordings to classify animals across phases of the estrous cycle, a study of both ML model and single cell interpretability. </p>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="research-area-wrapper">
@@ -498,14 +593,14 @@
                             <span class="skill-tag">Prosthetics</span>
                         </div>
                     </div>
-                    <div class="research-area">
+                    <a href="#nrel-details" class="research-area" style="text-decoration: none; color: inherit; cursor: pointer;">
                         <span class="research-area-number">02</span>
                         <div>
                             <h4>Neuro Rehabilitation Engineering Lab (NREL)</h4>
-                            <p>Aug. 2024 - Present<br><br>
+                            <p>Aug. 2025 - Present<br><br>
                             Working on reinforcement learning decoding applications for EMG-based upper-limb prosthetics.</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="research-area-wrapper">
@@ -523,14 +618,14 @@
                             <span class="skill-tag">Neurosurgery</span>
                         </div>
                     </div>
-                    <div class="research-area">
+                    <a href="#washu-details" class="research-area" style="text-decoration: none; color: inherit; cursor: pointer;">
                         <span class="research-area-number">03</span>
                         <div>
                             <h4>CINT Fellowship - WashU</h4>
-                            <p>May 2024 - Aug. 2024<br><br>
+                            <p>May 2025 - Aug. 2025<br><br>
                             Prototyped modifications to stereotactic depth electrodes for enhanced diagnostic fidelity in epilepsy patients.</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="research-area-wrapper">
@@ -549,58 +644,84 @@
                             <span class="skill-tag">R</span>
                         </div>
                     </div>
-                    <div class="research-area">
+                    <a href="#lacelab-details" class="research-area" style="text-decoration: none; color: inherit; cursor: pointer;">
                         <span class="research-area-number">04</span>
                         <div>
                             <h4>LACELab - NC State</h4>
                             <p>Aug. 2023 - Dec. 2023<br><br>
                             First research experience in undergrad, assisting in projects dealing with optimal learning conditions and trust in human-robot interaction.</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
 
             <div class="publications-section">
-                <h3 class="publications-title">Selected Projects</h3>
+                <h3 class="publications-title">Experience Descriptions</h3>
                 <div class="publications-grid">
-                    <div class="publication-card" style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start;">
+                    <div class="publication-card" id="meitzen-details" style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start; scroll-margin-top: 100px;">
                         <div>
-                            <h4>Estrous Phase Classification Project</h4>
-                            <p class="publication-authors">Meitzen Lab Research Project</p>
+                            <h4>Machine Learning and Neural Classification</h4>
+                            <p class="publication-authors">Meitzen Lab - Dept. of Biological Sciences</p>
                             <p class="publication-venue">NC State University</p>
                             <p class="publication-abstract">Taking the dataset I published in the mEPSC Dataset Project, I utilized various Python packages to import the data into google colab, 
                                 make it useable, and filter it. A variety of biological signal types (spiking, mEPSC, and passive membrane potential) each of 
                                 which capture different aspects of neuronal function were explored. I then tested the model accuracies of various machine learning algorithms 
                                 across features extracted from the different signal types, indicating which signal type encodes the state of estrous cycle phase best. This more broadly 
-                                represents an exploration of how best to computationally represent small scale neuromodulatory differences in cells within the brain.<br><br>On the right is a picture of my poster presentation at SYNAPSE 2025, alongside this, I was selected to give a lightning talk which you can listen to using the link below.</p>
+                                represents an exploration of how best to computationally represent small scale neuromodulatory differences in cells within the brain. More on this coming soon...
+                                <br><br>On the right is a picture of my poster presentation at SYNAPSE 2025, alongside this, 
+                                I was selected to give a lightning talk which you can listen to using the link below.</p>
                             <a href="https://youtu.be/9Q5Z3TM_CLA" style="color: var(--color-accent); text-decoration: none; font-weight: 500; margin-top: 1rem; display: inline-block;">Watch Presentation →</a>
-                        </div>
-                        <img src="images/poster2.jpg" alt="Estrous Phase Classification Poster" style="width: 100%; height: auto; border-radius: 8px;">
-                    </div>
-
-                    <div class="publication-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; align-items: start;">
-                        <img src="images/lab.webp" alt="Meitzen Lab" style="width: 100%; height: auto; border-radius: 8px;">
-                        <div>
+                            <br><br>
                             <h4>mEPSC Dataset Publication</h4>
-                            <p class="publication-authors">Meitzen Lab Research Project</p>
-                            <p class="publication-venue">Dryad Digital Repository</p>
                             <p class="publication-abstract">As part of my first project in the Meitzen lab I used a simple Python script to automate the merging of many excel spreadsheets into a dataset with data from two papers which I manually cleaned. I gained a lot of knowledge about how to read academic papers and understand what is important amongst a lot of jargon during this time.</p>
                             <br><p class="publication-authors"><a href="https://doi.org/10.5061/dryad.k0p2ngfgm" class="citation-link" target="_blank">Proaño, Stephanie B.; Krentzel, Amanda; Morris, Hannah J.; Kunz, Lindsey M.; Dorris, David M.; <strong style="font-weight: 600;">Raina, Armaan</strong>; Meitzen, John. (2024). Medium spiny neuron electrophysiological properties across male rats and female rats in different estrous cycle phases in the nucleus accumbens core: Excitatory synaptic input, action potential, and intrinsic properties [Dataset]. Dryad. https://doi.org/10.5061/dryad.k0p2ngfgm</a></p>
-                            <br>
-                            <p class="publication-abstract">On the left is a picture of me working on the computer in the patch-clamp rig room in the lab. It's pretty crazy to think that we can poke singular neurons and figure out what they are up to.</p>
+                        </div>
+                        <div>
+                            <img src="images/poster2.jpg" alt="Estrous Phase Classification Poster" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 2rem;">
+                            <img src="images/lab.webp" alt="Meitzen Lab" style="width: 100%; height: auto; border-radius: 8px;">
+                            <p class="publication-abstract">Me in the rig room scouring the old laptops for abf files.</p>
                         </div>
                     </div>
 
-                    <div class="publication-card" style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start;">
+                    <div class="publication-card" id="nrel-details" style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start; scroll-margin-top: 100px;">
                         <div>
-                            <h4>Innovation in Neurotech Fellowship</h4>
-                            <p class="publication-authors">Center for Innovation in Neuroscience and Technology Washington University in St. Louis Medical School</p>
-                            <p class="publication-venue">Department of Neurosurgery</p>
-                            <p class="publication-abstract">During my time with the Center for Innovation in Neuroscience and Technology (CINT) another undergraduate student and I drafted and prototyped substantial modifications to stereotactic depth electrodes to enhance their functionality while retaining their core purpose under Dr. Eric Leuthardt. I learned so much about FDA regulations/ pathways for medical devices, the differences in how neurosurgeons and engineers communicate, and the importance of observing before you build. I had the exciting opportunity to watch neurosurgery, work with very fancy 3D printers, and speak with experts from so many different domains.
-
+                            <h4>Reinforcement Learning for Prosthetic Control</h4>
+                            <p class="publication-authors">Neuro Rehabilitation Engineering Lab (NREL) - Dept. of Biomedical Engineering</p>
+                            <p class="publication-venue">NC State University/ University of North Carolina at Chapel Hill</p>
+                            <p class="publication-abstract">I work on optimizing the algorithms behind upper-limb prosthetics under Dr. Helen Huang. Thus far my work has involved
+                                developing custom RL environments using Gymnasium to assess efficiency of multithreading/ vectorizing computationally intensive tasks. Beyond this, 
+                                I have also done extensive reserach into use of my university's high-performance computing cluster for training RL agents, ultimately reducing 
+                                the training times of the upper-limb agents by up to 70% compared to before. I've also helped with data collection and cleaning for a 3 degree of freedom
+                                prosthetic control study, working with motion capture and wireless EMG sensors.
+                                <br><br>Other tasks I've helped with include configuring the eye tracking glasses pictured to the left, volunteering at the lab's outreach events, and 
+                                helping with tricky threading issues.</p>
                             </p>
                         </div>
+                        <img src="images/eyeglasses.jpeg" alt="Eye Tracking Glasses" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 2rem;"">
+                    </div>
+
+                    <div class="publication-card" id="washu-details" style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start; scroll-margin-top: 100px;">
+                        <div>
+                            <h4>Innovation in Neurotech Fellowship</h4>
+                            <p class="publication-authors">Center for Innovation in Neuroscience and Technology - Dept. of Neurosurgery</p>
+                            <p class="publication-venue">Washington University in St. Louis Medical School</p>
+                            <p class="publication-abstract">During my time with the Center for Innovation in Neuroscience and Technology (CINT) another undergraduate student and I drafted and prototyped substantial modifications to stereotactic depth electrodes to enhance their functionality while retaining their core purpose under Dr. Eric Leuthardt. 
+                                <br><br>I learned so much about FDA regulations and pathways for medical devices, the differences in how neurosurgeons and engineers communicate, and the importance of observing before you build. I had the exciting opportunity to watch neurosurgery, work with very fancy 3D printers, and speak with experts from so many different domains. The project involved designing functional concepts at the 50 micron scale and researching manufacturing capabilities for implementing these small-scale modifications in a clinically viable way.</p>
+                        </div>
                         <img src="files/washu.webp" alt="Washington University" style="width: 100%; height: auto; border-radius: 8px;">
+                    </div>
+
+                    <div class="publication-card" id="lacelab-details" style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start; scroll-margin-top: 100px;">
+                        <div>
+                            <h4>Human-Factors and Human-Robot Interaction</h4>
+                            <p class="publication-authors">LACELab (Learning, Aging, and Cognitive Ergonomics Lab) - Dept. of Psychology</p>
+                            <p class="publication-venue">NC State University</p>
+                            <p class="publication-abstract">I worked under Dr. Anne McLaughlin, assisting in multiple projects involving human-robot interaction, optimal learning conditions, and focus in stressful environments. I did a lot of work in setting up the infrastructure for code sharing via Github, wrote code 
+                                for Unity environments, and used Python/ JSON files to configure an automated survey system.
+                                <br><br>
+                                I also had the opportunity to present findings on autonomy and trust in robotics at the SNCURCS 2023, pictured to the right. This was a great experience that taught me a lot about how to prepare and present research findings.</p>
+                        </div>
+                        <img src="images/poster1.jpeg" alt="SNCURCS 2023" style="width: 100%; height: auto; border-radius: 8px;">
                     </div>
                 </div>
             </div>
@@ -608,7 +729,6 @@
     </section>
 
     <footer>
-        <p>Hopefully more to come ;)</p>
     </footer>
 
     <script>
@@ -641,6 +761,51 @@
         
         // Run once on page load
         handleScroll();
+
+        // Handle research card clicks and highlight corresponding description
+        document.querySelectorAll('.research-area[href^="#"]').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const targetId = card.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Remove highlight from all cards
+                    document.querySelectorAll('.publication-card').forEach(el => {
+                        el.classList.remove('highlight');
+                    });
+                    
+                    // Add highlight to target card
+                    setTimeout(() => {
+                        targetElement.classList.add('highlight');
+                    }, 300);
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
