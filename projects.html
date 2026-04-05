@@ -215,6 +215,16 @@
             z-index: 2;
         }
 
+        .project-card.clickable {
+            cursor: pointer;
+        }
+
+        .project-card.clickable:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border-color: var(--color-accent-light);
+        }
+
         .project-wrapper.active .project-details {
             opacity: 1;
             transform: translateX(0);
@@ -651,7 +661,7 @@
                             <span class="skill-tag">Neural Networks</span>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card clickable" onclick="window.open('https://github.com/Armaan-Raina/Epilepsy-State-Decoder', '_blank')">
                         <span class="project-number">02</span>
                         <div>
                             <span class="tag">Deep Learning</span>
@@ -677,7 +687,7 @@
                             <span class="skill-tag">EEG Analysis</span>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card clickable" onclick="window.open('https://github.com/Armaan-Raina/Schizophrenia-EEG-Classification', '_blank')">
                         <span class="project-number">03</span>
                         <div>
                             <span class="tag">Machine Learning</span>
