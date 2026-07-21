@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NREL | Armaan Raina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-name">Armaan Raina</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../projects.html">Building &amp; Teaching</a></li>
+                <li><a href="../resume.html">Resume</a></li>
+                <li><a href="../other.html">Other</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header" style="padding-bottom: 2rem;">
+        <div class="section-inner" style="text-align: left; max-width: 1100px;">
+            <a href="../research.html" class="back-link">All research</a>
+            <div class="detail-header">
+                <h1>Neuro Rehabilitation Engineering Lab (NREL)</h1>
+            </div>
+        </div>
+    </section>
+
+    <article class="detail-page">
+        <div class="section-inner detail-body">
+            <div class="detail-block">
+                <h2>Overview</h2>
+                <p>I am a research assistant at NREL assigned to the upper-limb prosthetics team where I 
+                    help out with improving the efficiency of the reinforcement learning setup used to 
+                    decode EMG signals. </p>
+            </div>
+
+            <div class="detail-block">
+                <h2>Current and previous work</h2>
+                <ul>
+                    <li>In an effort to reduce model training times, I conducted a deep dive into the high powered computing resources 
+                        at my university, the general hardware constraints of RL, and determined optimal configurations for submitting RL jobs.
+                        This resulted in substantially faster (~70%) completion of model training. 
+                    </li>
+                    <li>Another way I explored the reduction of model training times is through the use of multithreading and vectorization
+                        of RL environments. Using Gymnasium, I created computationally intensive environments and compared runtimes across 
+                        vectorized and non-vectorized ones to determine the suitability of parallelizing the existing RL workflows.
+                    </li>
+                    <li>Alongside being a subject myself, I assisted in data collection and processing for the 3d motion capture data which 
+                        serves as a ground truth for the RL training process. 
+                    </li>
+                    <li>Other tasks I've helped with include configuring the eye-tracking glasses pictured to below, volunteering at the lab's outreach events, and helping with tricky threading issues.</li>
+                </ul>
+            </div>
+            <div class="detail-image-row">
+                <img src="../images/eyeglasses.jpeg" alt="I dont think these look as cool as when I took this pic">
+                <img src="../images/Ouch.jpeg" alt="Sticky electrodes are not friends with arm hair">
+            </div>
+        </div>
+    </article>
+
+    <script src="../js/nav.js"></script>
+</body>
+</html>

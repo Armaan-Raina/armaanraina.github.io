@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krembil Research Institute | Armaan Raina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-name">Armaan Raina</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../projects.html">Building &amp; Teaching</a></li>
+                <li><a href="../resume.html">Resume</a></li>
+                <li><a href="../other.html">Other</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header" style="padding-bottom: 0.5rem;">
+        <div class="section-inner" style="text-align: left; max-width: 1100px;">
+            <a href="../research.html" class="back-link">All research</a>
+            <div class="detail-header">
+                <h1>Krembil Research Institute</h1>
+            </div>
+        </div>
+    </section>
+
+    <article class="detail-page">
+        <div class="section-inner detail-body">
+            <div class="detail-block">
+                <h2>Overview</h2>
+                <p>Thus far during my time here, I've worked on developing several pieces of software for the lab to 
+                    enable easier detection and analysis of various neural events alongside some simple
+                    analysis and embedded systems work.</p>
+            </div>
+
+            <div class="detail-block">
+                <h2>Current and previous work</h2>
+                <ul>
+                    <li>The Multielectrode Array Population-Level Event (MAPLE) detection software I developed
+                        addresses the current gap of robust detection and automatic analysis of population level 
+                        events from MEA recordings. If you'd like to learn more, check it out on my Github!
+                    </li>
+                    <li>To decrease the tediousness of manual labeling of interictal epileptiform discharges (IEDs) from raw EEG recordings,
+                        my amazing coworker and I developed a platform to streamline loading and labeling IEDs alongside built in evaluation
+                        of an IED detection algorithm against the ground truth. This one is also on my Github!
+                    </li>
+                    <li> [In progress] In order to enable concurrent ephys and camera monitoring of animals with intracranial EEG, the same amazing 
+                        coworker and I set up the SPI connection from a neural ephys chip (quite a cool toy) to a STM32 microcontroller
+                        and finally networked it using UDP to a visualization window with useful features including stim and seizure timestamps. 
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="detail-block">
+                <h2>Other Learning</h2>
+                <ul>
+                        Aside from the software-based work, I've had the privilege of observing several 
+                        surgeries, learning how to solder, fixing extremely old (windows 7 and XP old) computers, 
+                        and making some pretty amazing pottery.             
+                </ul>
+                <div class="detail-image-row">
+                    <img src="../images/soldering.jpg" alt="Armaan Soldering Electrodes">
+                    <img src="../images/pottery.jpg" alt="My Attempt at Pottery">
+                    <img src="../images/relic.jpg" alt="Windows 7">
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <script src="../js/nav.js"></script>
+</body>
+</html>

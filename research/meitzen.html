@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meitzen Lab | Armaan Raina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-name">Armaan Raina</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../projects.html">Building &amp; Teaching</a></li>
+                <li><a href="../resume.html">Resume</a></li>
+                <li><a href="../other.html">Other</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header" style="padding-bottom: 2rem;">
+        <div class="section-inner" style="text-align: left; max-width: 1100px;">
+            <a href="../research.html" class="back-link">All research</a>
+            <div class="detail-header">
+                <h1>Meitzen Lab</h1>
+            </div>
+        </div>
+    </section>
+
+    <article class="detail-page">
+        <div class="section-inner detail-body">
+            <div class="detail-block">
+                <h2>Overview</h2>
+                <p>Using whole cell patch-clamp data recorded across four estrous phases from rats, I trained machine learning models
+                    to classify phase based on features sets extracted from different recording techniques (mEPSC, spiking, passive) 
+                    and did a deep dive into model performance, feature importances, and each feature set in latent space.</p>
+            </div>
+
+            <div class="detail-block">
+                <h2>Current and previous work</h2>
+                <div class="detail-grid">
+                    <div>
+                        <div class="detail-block">
+                            <h2>Estrous cycle classification</h2>
+                            <p>Taking the dataset I published in the mEPSC Dataset Project, I utilized various Python packages to import the data into Google Colab, make it usable, and filter it. 
+                            A variety of biological signal types (spiking, mEPSC, and passive membrane potential)—each capturing different aspects of neuronal function—were explored. I then tested 
+                            model accuracies of various machine learning algorithms across features extracted from the different signal types, indicating which signal type encodes estrous cycle phase best. 
+                            This more broadly represents an exploration of how best to computationally represent small-scale neuromodulatory differences in cells within the brain. More on this coming soon...</p>
+                            <br><br><p>On the right are some pictures of my poster presentations at SYNAPSE 2025, triangle SFN 2026, and SBMT 2026. 
+                        </div>
+                        <br><br><br>
+    
+                        <div class="detail-block">
+                            <h2>mEPSC dataset publication</h2>
+                            <p>As part of my first project in the Meitzen lab I used a simple Python script to automate the merging of many Excel spreadsheets into a dataset with data from two papers, which I manually cleaned. I gained a lot of knowledge about how to read academic papers and understand what is important amongst a lot of jargon during this time.</p>
+                            <p><a href="https://doi.org/10.5061/dryad.k0p2ngfgm" class="citation-link" target="_blank" rel="noopener">Proaño, Stephanie B.; Krentzel, Amanda; Morris, Hannah J.; Kunz, Lindsey M.; Dorris, David M.; <strong style="font-weight: 600;">Raina, Armaan</strong>; Meitzen, John. (2024). Medium spiny neuron electrophysiological properties across male rats and female rats in different estrous cycle phases in the nucleus accumbens core: Excitatory synaptic input, action potential, and intrinsic properties [Dataset]. Dryad. https://doi.org/10.5061/dryad.k0p2ngfgm</a></p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="poster-fan">
+                            <img src="../images/poster2.jpg" alt="Early estrous phase classification poster at SYNAPSE 2025" class="fan-card fan-card-1">
+                            <img src="../images/SBMT.JPG" alt="Full estrous phase classification poster at SBMT 2026" class="fan-card fan-card-2">
+                            <img src="../images/tsfn.JPEG" alt="Full estrous phase classification poster at tSFN 2026" class="fan-card fan-card-3">
+                        </div>
+                        <br><br>
+                        <img src="../images/lab.webp" alt="Meitzen lab rig room" style="margin-top: 13.3rem;">
+                        <p style="color: var(--color-ink-faded); font-size: 0.9rem;">In the rig room scouring the old computers for abf files.</p>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </article>
+
+    <script src="../js/nav.js"></script>
+</body>
+</html>
