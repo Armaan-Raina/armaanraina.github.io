@@ -34,7 +34,11 @@ img{display:block;max-width:100%}
 .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--accent)}
 
 /* nav — identical to the homepage */
-nav{position:sticky;top:0;z-index:60;background:rgba(250,249,247,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);height:var(--nav-h)}
+/* tints to whatever --bg this page declares (research pages = Research's
+   tone, teaching/learning = Building's, photography/food = Beyond's) so
+   the nav reads as part of the page instead of a mismatched cream strip
+   sitting on top of it */
+nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb, var(--bg) 92%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);height:var(--nav-h)}
 .nav-in{max-width:var(--shell);width:100%;margin:0 auto;padding:0 var(--gut);height:100%;display:flex;justify-content:space-between;align-items:center;gap:24px}
 .brand{font-family:var(--display);font-size:1.25rem;font-weight:500;text-decoration:none;letter-spacing:.005em}
 .nav-r{display:flex;align-items:center;gap:22px}
