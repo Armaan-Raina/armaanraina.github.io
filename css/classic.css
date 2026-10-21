@@ -1,0 +1,187 @@
+/* ================= Classic theme — shared styles for detail / subpages =================
+   Companion to mockups/f-classic.html, which is the source of truth for every
+   token and component here. Pages using this stylesheet load Cormorant
+   Garamond (display) + Nunito Sans (body) from Google Fonts.
+
+   Background tone: each page sets its own --bg in a small inline <style>
+   block to match whichever homepage section links to it — e.g. the five
+   research pages use #f4f1ec (Research's tone), teaching.html and
+   learning.html use #ece7dd (Building's), other.html uses #e4ddce
+   (Beyond's) — so arriving here reads as "deeper into that section," not
+   "a different site." This file does not hardcode --bg for that reason. */
+:root{
+  --bg-2:#ffffff;
+  --rule:#e5e2dc;
+  --rule-2:#c4a77d;
+  --ink:#1a1a1a;
+  --ink-2:#4a4a4a;
+  --ink-3:#6b6b6b;
+  --accent:#8b7355;
+  --accent-2:#c4a77d;
+  --accent-soft:#f3ede3;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --body:'Nunito Sans',-apple-system,sans-serif;
+  --shell:1200px;
+  --gut:44px;
+  --nav-h:66px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);font-size:16px;line-height:1.68;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+.shell{max-width:var(--shell);width:100%;margin:0 auto;padding:0 var(--gut)}
+.lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--accent)}
+
+/* nav — identical to the homepage */
+nav{position:sticky;top:0;z-index:60;background:rgba(250,249,247,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);height:var(--nav-h)}
+.nav-in{max-width:var(--shell);width:100%;margin:0 auto;padding:0 var(--gut);height:100%;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.brand{font-family:var(--display);font-size:1.25rem;font-weight:500;text-decoration:none;letter-spacing:.005em}
+.nav-r{display:flex;align-items:center;gap:22px}
+.nav-links{display:flex;gap:20px;list-style:none;font-size:.76rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.nav-links a{text-decoration:none;color:var(--ink-2);padding-bottom:2px;border-bottom:1.5px solid transparent;transition:.18s}
+.nav-links a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.nav-cv{font-size:.73rem;font-weight:600;color:var(--accent);border:1px solid var(--rule-2);padding:6px 14px;
+  text-decoration:none;transition:.2s;text-transform:uppercase;letter-spacing:.04em}
+.nav-cv:hover{background:var(--accent);color:#fff}
+
+/* mobile nav — the links row doesn't fit at phone widths, so it's swapped
+   for a toggle button that drops down the same links instead of just
+   disappearing with no way back to them */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:28px;height:28px;background:none;border:0;padding:0;cursor:pointer}
+.nav-toggle span{display:block;width:100%;height:1.5px;background:var(--ink)}
+.nav-mobile{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg-2);border-bottom:1px solid var(--rule)}
+.nav-mobile.open{display:block}
+.nav-mobile-links{list-style:none;padding:6px var(--gut) 18px;display:flex;flex-direction:column}
+.nav-mobile-links a{display:block;padding:13px 0;font-size:.82rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--rule)}
+.nav-mobile-links li:last-child a{border-bottom:none}
+
+/* page head */
+.page-head{padding:56px 0 40px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:500;color:var(--accent);text-decoration:none}
+.back-link:hover{text-decoration:underline}
+.page-head .back-link{margin-bottom:28px}
+h1{font-family:var(--display);font-size:clamp(2.3rem,4.6vw,3.3rem);font-weight:400;letter-spacing:-.01em;line-height:1.08;text-wrap:balance}
+.page-head h1{text-align:center}
+
+/* body */
+.detail{padding-bottom:90px;max-width:800px;margin:0 auto;
+  padding-left:var(--gut);padding-right:var(--gut)}
+.lead{font-family:var(--display);font-size:1.3rem;font-weight:400;line-height:1.56;color:var(--ink-2);margin-bottom:34px}
+
+.block{margin-bottom:44px}
+.block h2{font-family:var(--display);font-size:1.7rem;font-weight:500;letter-spacing:-.005em;margin-bottom:16px}
+.block p{font-size:.98rem;color:var(--ink-2);line-height:1.8;margin-bottom:16px;max-width:68ch}
+.block p:last-child{margin-bottom:0}
+.block ul{list-style:none;margin-bottom:16px}
+.block li{position:relative;padding-left:1.4em;color:var(--ink-2);font-size:.98rem;line-height:1.8;margin-bottom:14px;max-width:68ch}
+.block li::before{content:'→';position:absolute;left:0;color:var(--accent-2)}
+.block li:last-child{margin-bottom:0}
+
+/* one gallery component for every case — a single image fills the row
+   (minmax 1fr means it has nothing to share the row with), two or three
+   sit side by side, four wrap to a second row — no per-page special
+   casing needed between the sparse pages and the image-heavy ones */
+.img-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:4px;margin:28px 0}
+.img-row figure{margin:0}
+.img-row img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--rule);display:block}
+.img-row figcaption{font-size:.78rem;color:var(--ink-3);padding-top:8px}
+.block > .img-row:last-child{margin-bottom:0}
+
+.citation{display:block;border:1px solid transparent;padding:18px 22px;margin:0 -22px 16px;
+  font-size:.85rem;color:var(--ink-3);line-height:1.65;text-decoration:none;transition:border-color .2s ease,background .2s ease}
+.citation:last-child{margin-bottom:0}
+.citation:hover{border-color:var(--accent-2);background:var(--bg-2)}
+.citation strong{color:var(--ink);font-weight:700}
+.citation .cite-lbl{display:block;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:8px}
+
+/* repeating sections on a page like learning.html */
+.page-section{padding:56px 0;border-bottom:1px solid var(--rule)}
+.page-section:last-of-type{border-bottom:none}
+
+/* course grid (learning.html) — same hover-border card as everything else */
+.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:3px;margin:28px -24px 0}
+.course{display:block;border:1px solid transparent;padding:22px 24px;text-decoration:none;color:inherit;transition:border-color .22s ease}
+.course:hover{border-color:var(--accent-2)}
+.course .code{font-size:.7rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:7px;display:block}
+.course h4{font-family:var(--display);font-size:1.18rem;font-weight:500;line-height:1.3;margin-bottom:9px}
+.course p{font-size:.9rem;color:var(--ink-3);line-height:1.7}
+.course p em{font-style:italic;color:var(--ink-2)}
+
+/* side-by-side story blocks (pottery/farm) */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,40%);gap:38px;align-items:center;margin-top:24px}
+.story.reverse{grid-template-columns:minmax(240px,40%) minmax(0,1fr)}
+.story.wide{grid-template-columns:minmax(0,1fr) minmax(350px,62%)}
+.story.wide.reverse{grid-template-columns:minmax(280px,52%) minmax(0,1fr)}
+.story.reverse .story-media{order:1}
+.story.reverse .story-copy{order:2}
+.story-media img{width:100%;height:auto;border:1px solid var(--rule);aspect-ratio:4/3;object-fit:cover}
+/* two photos side by side instead of stacked — keeps the media column
+   roughly as tall as a single image instead of doubling its height */
+.story-media.pair{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.story-copy p{color:var(--ink-2);font-size:1rem;line-height:1.82;margin-bottom:14px}
+.placeholder-note{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-style:italic;
+  color:var(--ink-3);border-left:2px solid var(--accent-2);padding:6px 0 6px 12px}
+
+/* photo/food gallery grid (other.html) — dense, sharp-cornered tiles with
+   the same grayscale-to-color hover as the homepage's Beyond teaser, just
+   a plain responsive grid instead of an auto-scrolling marquee so it
+   reflows cleanly on a phone instead of needing horizontal drag */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:4px;margin:28px 0 70px}
+.gallery-grid:last-child{margin-bottom:0}
+.gallery-tile{position:relative;overflow:hidden;aspect-ratio:1/1;border:1px solid var(--rule);cursor:pointer;display:block}
+.gallery-tile img{width:100%;height:100%;object-fit:cover;filter:grayscale(15%);transition:transform .4s ease,filter .3s ease}
+.gallery-tile:hover img{transform:scale(1.05);filter:grayscale(0)}
+
+/* full-bleed, naturally-sized scrolling gallery (photography.html,
+   food.html) — two rows drifting past each other in opposite directions.
+   Each item is sized by a fixed row HEIGHT with width left to auto, so
+   every image keeps its own native aspect ratio instead of being cropped
+   into a uniform tile — closer to a contact sheet than a grid. */
+.filmstrip-wrap{width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;padding:40px 0}
+.filmstrip{display:flex;flex-direction:column;gap:14px}
+.filmstrip-row{display:flex;gap:14px;width:max-content;animation:filmstrip-scroll 90s linear infinite}
+.filmstrip-row.reverse{animation-name:filmstrip-scroll-rev}
+.filmstrip-row:hover{animation-play-state:paused}
+@keyframes filmstrip-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes filmstrip-scroll-rev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.filmstrip-item{flex-shrink:0;height:clamp(180px,24vw,300px);border:1px solid var(--rule);cursor:pointer;overflow:hidden}
+.filmstrip-item img{height:100%;width:auto;display:block;filter:grayscale(15%);transition:filter .3s ease}
+.filmstrip-item:hover img{filter:grayscale(0)}
+
+.lightbox{display:none;position:fixed;inset:0;background:rgba(26,26,26,.95);z-index:1000;align-items:center;justify-content:center;padding:32px}
+.lightbox.active{display:flex}
+.lightbox-content{max-width:90vw;max-height:90vh;position:relative}
+.lightbox-content img{max-width:100%;max-height:90vh;object-fit:contain;display:block}
+.lightbox-close{position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:1.4rem;cursor:pointer;padding:12px 16px}
+.lightbox-prev{left:14px}
+.lightbox-next{right:14px}
+
+@media(max-width:800px){
+  /* .story.wide / .story.wide.reverse carry more classes than the plain
+     .story,.story.reverse reset below, so without repeating the selectors
+     here they'd win on specificity and never actually stack on mobile */
+  .story,.story.reverse,.story.wide,.story.wide.reverse{grid-template-columns:1fr}
+  .story.reverse .story-media,.story.reverse .story-copy{order:unset}
+}
+
+@media(max-width:680px){
+  :root{--gut:20px}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  .page-head{padding-top:36px}
+  .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+  .filmstrip-item{height:clamp(110px,36vw,170px)}
+  .filmstrip,.filmstrip-row{gap:8px}
+  .lightbox{padding:16px}
+  .lightbox-close{top:-38px;font-size:1.6rem}
+  .lightbox-nav{padding:9px 13px;font-size:1.2rem}
+  .lightbox-prev{left:4px}
+  .lightbox-next{right:4px}
+  /* both bleed past their container by more than the 20px gut at this
+     width, which was causing a few px of horizontal overflow on phones */
+  .citation{margin-left:0;margin-right:0;padding-left:16px;padding-right:16px}
+  .course-grid{margin-left:-16px;margin-right:-16px}
+  .course{padding-left:16px;padding-right:16px}
+}

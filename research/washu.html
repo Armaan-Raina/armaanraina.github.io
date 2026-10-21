@@ -3,64 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CINT Fellowship | Armaan Raina</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/shared.css">
+    <title>Armaan Raina</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/classic.css">
+    <style>:root{--bg:#f4f1ec}</style>
 </head>
 <body>
     <nav>
-        <div class="nav-inner">
-            <a href="../index.html" class="nav-name">Armaan Raina</a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="../research.html">Research</a></li>
-                <li><a href="../projects.html">Building &amp; Teaching</a></li>
-                <li><a href="../resume.html">Resume</a></li>
-                <li><a href="../other.html">Other</a></li>
+        <div class="nav-in">
+            <a class="brand" href="../index.html">Armaan Raina</a>
+            <div class="nav-r">
+                <ul class="nav-links">
+                    <li><a href="../index.html#research">Research</a></li>
+                    <li><a href="../index.html#building">Building</a></li>
+                    <li><a href="../index.html#beyond">Beyond</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <a class="nav-cv" href="../files/Armaan Raina Resume.pdf" target="_blank">Resume</a>
+                <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+        <div class="nav-mobile">
+            <ul class="nav-mobile-links">
+                <li><a href="../index.html#research">Research</a></li>
+                <li><a href="../index.html#building">Building</a></li>
+                <li><a href="../index.html#beyond">Beyond</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../files/Armaan Raina Resume.pdf" target="_blank">Resume</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="page-header" style="padding-bottom: 2rem;">
-        <div class="section-inner" style="text-align: left; max-width: 1100px;">
-            <a href="../research.html" class="back-link">All research</a>
-            <div class="detail-header">
-                <h1>Innovation in Neurotech Fellowship</h1>
-            </div>
+    <header class="page-head shell">
+        <h1>Device design at Washington University in St. Louis School of Medicine</h1>
+    </header>
+
+    <article class="detail">
+        <div class="block">
+            <h2>Overview</h2>
+            <p>During my time in this program I worked primarily on drafting, designing, and prototyping modifications to stereotactic depth electrodes to enable tissue sampling alongside recording. This experience was a great way to step away from coding and think more about the device design aspect of neurotechnology.</p>
         </div>
-    </section>
 
-    <article class="detail-page">
-        <div class="section-inner detail-body">
-            <div class="detail-block">
-                <h2>Overview</h2>
-                <p>During my time in the <a href="https://neurosurgery.wustl.edu/center-for-innovation-in-neuroscience-and-technology-cint/" target="_blank">CINT Fellowship</a> I worked primarily
-                on drafting, designing, and prototyping modifications to stereotactic depth electrodes to add a dimension to their capacity for seizure focus localization.
-                This experience was a great way to step away from coding and think more about the device design aspect of neurotechnology.</p> 
-            </div>
+        <div class="block">
+            <h2>Accomplishments</h2>
+            <ul>
+                <li>I conducted extensive research into various biomarkers of epileptogenic tissue and consideration about which of them could be feasibly implemented into a device matching the specs of existing sEEG electrodes.</li>
+                <li>In an effort to apply our findings on relevant epileptic biomarkers, my partner on this project and I brainstormed over 12 prototypes for our objective exploring the use of rotational and tensile forces, cell-adhesion molecules, and suction-based approaches. Each of these were designed and validated ones were 3d printed at a 10x scale for testing which was conducted in jello (who could've known jello would make an accurate brain phantom).</li>
+                <li>To explore the commercialization process of devices like these, we also delved into the regulatory pathways under which this device would be approved by the FDA alongside some prelimiary market research to uncover the ways in which this device could be brought to market.</li>
+            </ul>
+        </div>
 
-            <div class="detail-block">
-                <h2>Previous work</h2>
-                <ul>
-                    <li>I conducted extensive research into various biomarkers of epileptogenic tissue and consideration about which of them could be feasibly implemented into a device matching 
-                        the specs of existing sEEG electrodes. 
-                    </li>
-                    <li>In an effort to apply our findings on relevant epileptic biomarkers, my partner on this project and I brainstormed over 12 prototypes for our objective exploring the use of rotational and tensile forces, 
-                        cell-adhesion molecules, and suction-based approaches. Each of these were designed and validated ones were 3d printed at a 10x scale for testing which was conducted in jello (who could've known jello would make an accurate brain phantom).
-                    </li>
-                    <li>To explore the commercialization process of devices like these, we also delved into the regulatory pathways under which this device would be approved by the FDA alongside some prelimiary market research
-                        to uncover the ways in which this device could be brought to market.
-                    </li>
-                </ul>
-                <img src="../files/washu.webp" alt="Washington University in St. Louis" width="300" height="400" style="border-radius: 8px;">
-            </div>
+        <div class="img-row">
+            <figure><img src="../files/washu.webp" alt="Washington University in St. Louis"></figure>
         </div>
     </article>
-
-    <script src="../js/nav.js"></script>
+    <script src="../js/nav.js" defer></script>
 </body>
 </html>

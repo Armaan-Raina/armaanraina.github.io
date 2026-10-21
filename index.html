@@ -1,632 +1,659 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armaan Raina</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-ink: #1a1a1a;
-            --color-ink-light: #4a4a4a;
-            --color-ink-faded: #6b6b6b;
-            --color-cream: #faf9f7;
-            --color-cream-dark: #f0eee9;
-            --color-accent: #8b7355;
-            --color-accent-light: #c4a77d;
-            --color-border: #e5e2dc;
-            --font-display: 'Cormorant Garamond', Georgia, serif;
-            --font-body: 'Nunito Sans', -apple-system, sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 1.7;
-            color: var(--color-ink);
-            background-color: var(--color-cream);
-            -webkit-font-smoothing: antialiased;
-            opacity: 0;
-            animation: fadeIn 0.6s ease-out 0.1s forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: rgba(250, 249, 247, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.25rem 2.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-name {
-            font-family: var(--font-display);
-            font-size: 1.35rem;
-            font-weight: 500;
-            color: var(--color-ink);
-            text-decoration: none;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--color-ink-light);
-            text-decoration: none;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--color-accent);
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .mobile-menu-toggle span {
-            width: 24px;
-            height: 2px;
-            background-color: var(--color-ink);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 2.5rem 4rem;
-        }
-
-        .hero-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 6rem;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 6vw, 4.5rem);
-            font-weight: 400;
-            line-height: 1.1;
-            color: var(--color-ink);
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.01em;
-        }
-
-        .hero-content h1 em {
-            font-style: italic;
-            color: var(--color-accent);
-        }
-
-        .hero-tagline {
-            font-family: var(--font-display);
-            font-size: 1.35rem;
-            font-weight: 400;
-            color: var(--color-ink-light);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .hero-intro {
-            font-size: 1.05rem;
-            color: var(--color-ink-faded);
-            max-width: 540px;
-            line-height: 1.8;
-        }
-
-        .hero-image {
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-            object-position: 35% 20%;
-            filter: grayscale(15%) contrast(1.02);
-        }
-
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            width: 100%;
-            height: 100%;
-            border: 1px solid var(--color-accent-light);
-            z-index: -1;
-        }
-
-        /* Sections */
-        .section-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--color-accent);
-            margin-bottom: 0.75rem;
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 400;
-            color: var(--color-ink);
-            margin-bottom: 3.5rem;
-            letter-spacing: -0.01em;
-        }
-
-        /* Research Section */
-        .research {
-            padding: 6rem 2.5rem;
-        }
-
-        .research-content {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 5rem;
-            align-items: start;
-        }
-
-        .research-text h3 {
-            font-family: var(--font-display);
-            font-size: 1.75rem;
-            font-weight: 400;
-            color: var(--color-ink);
-            margin-bottom: 1.5rem;
-        }
-
-        .research-text p {
-            color: var(--color-ink-faded);
-            margin-bottom: 1.25rem;
-            font-size: 1rem;
-        }
-
-        .research-text p strong {
-            color: var(--color-ink);
-            font-weight: 600;
-        }
-
-        .research-areas {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .research-area {
-            padding: 2rem;
-            background: white;
-            border: 1px solid var(--color-border);
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 1.5rem;
-            align-items: start;
-        }
-
-        .research-area-number {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 300;
-            color: var(--color-accent-light);
-            line-height: 1;
-        }
-
-        .research-area h4 {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--color-ink);
-            margin-bottom: 0.5rem;
-        }
-
-        .research-area p {
-            font-size: 0.9rem;
-            color: var(--color-ink-faded);
-            line-height: 1.6;
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 6rem 2.5rem;
-            background: var(--color-ink);
-            color: white;
-        }
-
-        .projects .section-label {
-            color: var(--color-accent-light);
-        }
-
-        .projects .section-title {
-            color: white;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .project-card {
-            padding: 2.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.3s ease, border-color 0.3s ease;
-        }
-
-        .project-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .project-card .tag {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-accent-light);
-            padding: 0.35rem 0.75rem;
-            border: 1px solid var(--color-accent-light);
-            margin-bottom: 1.25rem;
-        }
-
-        .project-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .project-card p {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.7;
-        }
-
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 2.5rem;
-            text-align: center;
-        }
-
-        .contact .section-title {
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-text {
-            font-size: 1.1rem;
-            color: var(--color-ink-faded);
-            max-width: 560px;
-            margin: 0 auto 2.5rem;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--color-ink);
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid var(--color-border);
-            transition: all 0.2s ease;
-        }
-
-        .contact-link:hover {
-            border-color: var(--color-accent);
-            color: var(--color-accent);
-        }
-
-        .contact-link svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem 2.5rem;
-            border-top: 1px solid var(--color-border);
-            text-align: center;
-        }
-
-        footer p {
-            font-size: 0.8rem;
-            color: var(--color-ink-faded);
-            letter-spacing: 0.02em;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-inner {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .hero-image {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-
-            .research-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-inner {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
-
-            .nav-links a {
-                font-size: 0.75rem;
-            }
-
-            .hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .research,
-            .projects,
-            .contact {
-                padding: 4rem 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 68px;
-                left: 0;
-                right: 0;
-                background: rgba(250, 249, 247, 0.98);
-                backdrop-filter: blur(8px);
-                flex-direction: column;
-                gap: 0;
-                padding: 1.5rem 0;
-                border-bottom: 1px solid var(--color-border);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: transform 0.3s ease, opacity 0.3s ease;
-                pointer-events: none;
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: all;
-            }
-
-            .nav-links li {
-                text-align: center;
-                padding: 0.75rem 1.5rem;
-                border-bottom: 1px solid var(--color-border);
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                font-size: 0.9rem;
-                display: block;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .hero-image {
-                max-width: 300px;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            .project-card,
-            .research-card {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+<script>
+// Must run before anything else, and before any native browser behavior
+// gets a chance to act — otherwise whether it "wins the race" depends on
+// load speed, which is exactly what made the splash inconsistent on
+// reload. Two separate browser behaviors, both disabled here:
+//  1. history.scrollRestoration: by default, browsers can restore your
+//     previous scroll position on reload — if you'd scrolled down before
+//     refreshing, some reloads would land already-scrolled, before our
+//     own script ever ran.
+//  2. Scroll-to-URL-fragment: if "#intro" is ever in the address bar
+//     (e.g. left over from earlier testing), the browser jumps straight
+//     there as part of the page load itself, before any deferred script
+//     can intervene.
+history.scrollRestoration = 'manual';
+if(location.hash === '#intro'){
+  history.replaceState(null, '', location.pathname + location.search);
+}
+// If the intro has already played once this browsing session (tracked in
+// sessionStorage — cleared when the tab closes, carried across ordinary
+// navigation within it, including a subpage's back button), hide the
+// splash before it ever paints. Without this, every return trip from a
+// research page would flash the full splash screen for a moment before
+// the body script at the end of the page could react and hide it.
+try{
+  if(sessionStorage.getItem('armaanIntroDone')){
+    document.documentElement.classList.add('intro-done');
+  }
+}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Armaan Raina</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf9f7;
+  --bg-2:#ffffff;
+  --bg-3:#f0eee9;
+  --rule:#e5e2dc;
+  --rule-2:#c4a77d;
+  --ink:#1a1a1a;
+  --ink-2:#4a4a4a;
+  --ink-3:#6b6b6b;
+  --accent:#8b7355;
+  --accent-2:#c4a77d;
+  --accent-soft:#f3ede3;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --body:'Nunito Sans',-apple-system,sans-serif;
+  --shell:1200px;
+  --gut:44px;
+  --nav-h:66px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);font-size:16px;line-height:1.68;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block}
+.shell{max-width:var(--shell);width:100%;margin:0 auto;padding:0 var(--gut)}
+.lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--accent)}
+
+/* ============ SPLASH — "Armaan" chases and merges into the real headline.
+   Default/no-JS/reduced-motion state is sticky (scrolls away on its own with
+   zero script); JS upgrades it to a fixed overlay that can chase a moving
+   target. See the <noscript> override near the markup. ============ */
+.splash-wrap{height:180vh;position:relative}
+html.intro-done .splash-wrap{display:none}
+.splash{display:flex;align-items:center;justify-content:center;text-align:center;
+  position:sticky;top:0;height:100vh;height:100svh;z-index:100;
+  text-decoration:none;color:inherit}
+.splash .name{font-family:var(--display);font-weight:400;font-size:clamp(2.8rem,9vw,6.5rem);letter-spacing:.01em;line-height:1}
+.splash .name span{display:inline-block;will-change:opacity,transform;backface-visibility:hidden}
+
+/* nav */
+nav{position:sticky;top:0;z-index:60;background:rgba(250,249,247,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);height:var(--nav-h);transition:background-color .5s ease}
+.nav-in{max-width:var(--shell);margin:0 auto;padding:0 var(--gut);height:100%;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.brand{font-family:var(--display);font-size:1.25rem;font-weight:500;text-decoration:none;letter-spacing:.005em}
+.nav-r{display:flex;align-items:center;gap:22px}
+.nav-links{display:flex;gap:20px;list-style:none;font-size:.76rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.nav-links a{text-decoration:none;color:var(--ink-2);padding-bottom:2px;border-bottom:1.5px solid transparent;transition:.18s}
+.nav-links a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.nav-cv{font-size:.73rem;font-weight:600;color:var(--accent);border:1px solid var(--rule-2);padding:6px 14px;
+  text-decoration:none;transition:.2s;text-transform:uppercase;letter-spacing:.04em}
+.nav-cv:hover{background:var(--accent);color:#fff}
+
+/* mobile nav — the links row doesn't fit at phone widths, so it's swapped
+   for a toggle button that drops down the same links instead of just
+   disappearing with no way back to them */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:28px;height:28px;background:none;border:0;padding:0;cursor:pointer}
+.nav-toggle span{display:block;width:100%;height:1.5px;background:var(--ink)}
+.nav-mobile{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg-2);border-bottom:1px solid var(--rule)}
+.nav-mobile.open{display:block}
+.nav-mobile-links{list-style:none;padding:6px var(--gut) 18px;display:flex;flex-direction:column}
+.nav-mobile-links a{display:block;padding:13px 0;font-size:.82rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--rule)}
+.nav-mobile-links li:last-child a{border-bottom:none}
+
+/* ============ full-screen section scaffolding ============ */
+.fullsec{min-height:100vh;min-height:100svh;scroll-margin-top:var(--nav-h);display:flex;flex-direction:column;
+  justify-content:center;padding:calc(var(--nav-h) + 54px) 0 70px}
+
+/* hero */
+#heroInner{opacity:1;will-change:opacity}
+#heroArmaan{display:inline-block;will-change:opacity}
+.hero-grid{display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center}
+h1.hi{font-family:var(--display);font-size:clamp(2.9rem,6vw,4.4rem);font-weight:400;line-height:1.08;letter-spacing:-.01em;margin-bottom:25px}
+.bio{font-size:1.06rem;color:var(--ink-2);max-width:58ch;line-height:1.86}
+.bio + .bio{margin-top:17px}
+.bio strong{color:var(--ink);font-weight:600}
+.bio a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--accent-soft)}
+.bio a:hover{border-bottom-color:var(--accent)}
+
+.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;
+  filter:grayscale(10%) contrast(1.02);border:1px solid var(--rule)}
+.portrait figcaption{font-size:.78rem;color:var(--ink-3);line-height:1.6;padding-top:12px}
+
+/* ============ section panels — progressive darkening + quiet numerals,
+   a softened nod to c-index's panel rhythm without the hard rules.
+   (Testing this instead of alternating bands — easy to flip back:
+   swap these four background-colors for var(--bg)/var(--bg-3) alternating.) ============ */
+#research{background:#f4f1ec}
+#building{background:#ece7dd}
+#beyond{background:#e4ddce}
+#contact{background:#dcd2bd}
+.fullsec.seam{border-top:1px solid var(--rule)}
+.sec-head{margin-bottom:34px}
+.sec-kicker{display:flex;align-items:baseline;gap:11px}
+.sec-num{font-family:var(--display);font-size:1rem;font-weight:500;color:var(--rule-2)}
+.sec-head h2{font-family:var(--display);font-size:2.3rem;font-weight:400;letter-spacing:-.01em;margin-top:8px}
+
+/* ============ unified card system — one shape for everything ============ */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:3px;margin:0 -3px}
+.xcard{border:1px solid transparent;padding:30px 28px;text-decoration:none;display:flex;flex-direction:column;
+  min-height:238px;transition:border-color .22s ease}
+.xcard:hover{border-color:var(--accent-2)}
+.xcard .tag{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:12px}
+.xcard h3{font-family:var(--display);font-size:1.38rem;font-weight:500;line-height:1.28;margin-bottom:10px}
+.xcard p{font-size:.92rem;color:var(--ink-3);line-height:1.72;flex:1}
+.xcard .go{font-size:.78rem;font-weight:600;color:var(--accent);margin-top:16px;display:inline-block}
+.xcard.static{cursor:default}
+
+/* ============ BEYOND — teaser only, galleries live on other.html ============ */
+.beyond-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.beyond-tile{position:relative;overflow:hidden;aspect-ratio:4/3;display:block;border:1px solid var(--rule)}
+.beyond-tile img{width:100%;height:100%;object-fit:cover;filter:grayscale(15%);transition:transform .5s ease,filter .4s ease}
+.beyond-tile:hover img{transform:scale(1.04);filter:grayscale(0)}
+.beyond-tile .cap{position:absolute;inset:auto 0 0 0;padding:26px 26px 20px;color:#fff;
+  background:linear-gradient(transparent,rgba(26,26,26,.72))}
+.beyond-tile .cap h3{font-family:var(--display);font-size:1.6rem;font-weight:500;margin-bottom:4px}
+.beyond-tile .cap span{font-size:.78rem;letter-spacing:.04em;opacity:.85}
+
+/* contact */
+.contact-card{background:var(--bg-2);border:1px solid var(--rule);padding:46px 48px}
+.cl{display:grid;grid-template-columns:1fr;gap:9px}
+.cl a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px;
+  border:1px solid var(--rule);text-decoration:none;font-size:.9rem;font-weight:500;transition:.2s}
+.cl a:hover{border-color:var(--accent-2);background:var(--accent-soft);color:var(--accent)}
+.cl span{color:var(--ink-3);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.11em}
+footer{padding:30px 0 48px;font-size:.78rem;color:var(--ink-3);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .portrait{max-width:340px}
+  .contact-card{padding:34px 30px}
+  .beyond-grid{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  :root{--gut:20px}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  .fullsec{padding:calc(var(--nav-h) + 36px) 0 50px}
+  .card-grid{margin:0}
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-inner">
-            <a href="index.html" class="nav-name">Armaan Raina</a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="research.html">Research</a></li>
-                <li><a href="projects.html">Building &amp; Teaching</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="other.html">Other</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="hero-content">
-                <h1>Hi, I'm Armaan.<br></h1>
-                <p class="hero-intro">
-                    Welcome to my portfolio! I'm a fourth year computer science and statistics student at NC State University working on projects ranging from applications of machine learning in single cell recordings to
-                    building EEG and EMG based neural interfaces. My main interests are in closed-loop neuromodulation, neural decoding, and translational neurotech applications. Outside of work and academics, I enjoy 
-                    being outdoors, photography, and cooking.
-                </p>
-            </div>
-            <div class="hero-image">
-                <img src="images/frontpic.jpg" alt="Armaan Raina">
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="section-inner">
-            <h2 class="section-title">Get in Touch</h2>
-            <p class="contact-text">
-                If we share any common interests or you'd like to learn more about any of my experiences, I'd love to hear from you.
-            </p>
-            <div class="contact-links">
-                <a href="mailto:araina3@ncsu.edu" class="contact-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="2" y="4" width="20" height="16" rx="2"/>
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                    </svg>
-                    Email
-                </a>
-                <a href="https://www.linkedin.com/in/armaanraina" class="contact-link" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                        <rect x="2" y="9" width="4" height="12"/>
-                        <circle cx="4" cy="4" r="2"/>
-                    </svg>
-                    LinkedIn
-                </a>
-                <a href="https://github.com/Armaan-Raina" class="contact-link" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
-                    GitHub
-                </a>
-            </div>
-        </div>
-    </section>
+<div class="splash-wrap" id="splashWrap">
+  <a class="splash" id="splash" href="#intro">
+    <span class="name"><span id="splashArmaan">Armaan</span> <span id="splashRaina">Raina</span></span>
+  </a>
+</div>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#">Armaan Raina</a>
+    <div class="nav-r">
+      <ul class="nav-links">
+        <li><a href="#research">Research</a></li>
+        <li><a href="#building">Building</a></li>
+        <li><a href="#beyond">Beyond</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="nav-cv" href="files/Armaan Raina Resume.pdf" target="_blank">Resume</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile">
+    <ul class="nav-mobile-links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#building">Building</a></li>
+      <li><a href="#beyond">Beyond</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="files/Armaan Raina Resume.pdf" target="_blank">Resume</a></li>
+    </ul>
+  </div>
+</nav>
 
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+<header class="hero fullsec shell" id="intro">
+  <div id="heroInner">
+    <div class="hero-grid">
+      <div>
+        <h1 class="hi">Hi, I'm <span id="heroArmaan">Armaan</span>.</h1>
+        <p class="bio">
+          I'm a fourth-year computer science and statistics student at NC State fascinated by the human brain. I've dedicated
+          my time in undergrad to applying computational methods to learn more about and build devices based on neural signals.
+          From applications of machine learning in single cell recordings to closed-loop stimulation devices, I've had the privilege of
+          working on a variety of problems all of which are inspired by my curiosity about the complexity of our brains.
+        </p>
+      </div>
+      <figure class="portrait">
+        <img src="images/frontpic.jpg" alt="Armaan Raina holding a human brain specimen in a lab coat">
+      </figure>
+    </div>
+  </div>
+</header>
 
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
+<main>
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            }
-        });
-    </script>
+<section class="fullsec seam" id="research">
+  <div class="shell">
+  <div class="sec-head"><div class="sec-kicker"></div><h2>Research Experiences</h2></div>
+
+  <div class="card-grid">
+    <a class="xcard" href="research/krembil.html">
+      <span class="tag">University of Toronto</span>
+      <h3>Neuron to Brain Lab</h3>
+      <p>ML-driven LFP detection software, optimization of the closed-loop detection and stimulation algorithm, neural stimulation hardware/ software development, characterization of IED propagation.</p>
+    </a>
+
+    <a class="xcard" href="research/nrel.html">
+      <span class="tag">NC State</span>
+      <h3>Neural Rehabilitation Engineering Lab</h3>
+      <p>Deep research into HPC usage with respect to RL's actual hardware constraints, exploration of multithreading approaches to improve RL computational efficiency, computer vision model experimental integration and optimization.</p>
+    </a>
+
+    <a class="xcard" href="research/meitzen.html">
+      <span class="tag">NC State</span>
+      <h3>Meitzen Lab</h3>
+      <p>Machine learning-based study of the ways in which sex hormones influence various aspects of neuronal function.</p>
+    </a>
+
+    <a class="xcard" href="research/washu.html">
+      <span class="tag">WUSTL School of Medicine</span>
+      <h3>Center for Innovation in Neuroscience and Technology</h3>
+      <p>Prototyped modifications to stereotactic EEG electrodes to sample tissue alongside their core recording functionality.</p>
+    </a>
+
+    <a class="xcard" href="research/lacelab.html">
+      <span class="tag">NC State</span>
+      <h3>LACELab</h3>
+      <p>Human factors work on optimal learning conditions, trust in human-robot interaction, cognitive load</p>
+    </a>
+  </div>
+  </div>
+</section>
+
+<section class="fullsec seam" id="building">
+  <div class="shell">
+  <div class="sec-head"><div class="sec-kicker"><h2>Building</h2></div>
+
+  <div class="card-grid">
+    <a class="xcard" href="https://ncsuneurotech.org/" target="_blank" rel="noopener">
+      <span class="tag">President &amp; cofounder</span>
+      <h3>Neurotech @ NC State</h3>
+      <p>Check us out!</p>
+    </a>
+
+    <a class="xcard" href="teaching.html">
+      <span class="tag">Teaching Assistant</span>
+      <h3>Dept. of Biological Sciences</h3>
+      <p>Exam reviews, grading, review sessions, Python-based simulations for difficult topics.</p>
+    </a>
+
+    <div class="xcard static">
+      <span class="tag">Software team member</span>
+      <h3>Pack Bionics</h3>
+      <p>Deep learning research and preliminary data analysis for gait prediction algorithm underlying prosthetic leg.</p>
+    </div>
+
+    <a class="xcard" href="https://github.com/Armaan-Raina/Epilepsy-State-Decoder" target="_blank" rel="noopener">
+      <span class="tag">Personal project</span>
+      <h3>Epilepsy State Decoder</h3>
+      <p>Short tutorial for club members, demonstration of how deep learning can be applied to neural data.</p>
+    </a>
+
+    <a class="xcard" href="https://github.com/Armaan-Raina/Schizophrenia-EEG-Classification" target="_blank" rel="noopener">
+      <span class="tag">Personal project</span>
+      <h3>Schizophrenia EEG Classification</h3>
+      <p>Binary classification of schizophrenic state based on simple spectral features of EEG.</p>
+    </a>
+
+    <a class="xcard" href="learning.html#coursework">
+      <span class="tag">Learning</span>
+      <h3>Coursework and more</h3>
+    </a>
+  </div>
+  </div>
+</section>
+
+<!-- ============ BEYOND — teaser, full galleries live on other.html ============ -->
+<section class="fullsec seam" id="beyond">
+  <div class="shell">
+  <div class="sec-head"><div class="sec-kicker"><h2>Beyond</h2></div>
+  <p style="color:var(--ink-2);max-width:60ch;margin-bottom:28px;font-size:1rem">Click on each one to see more</p>
+
+  <div class="beyond-grid">
+    <a class="beyond-tile" href="photography.html">
+      <img src="images/mountainsunrise.webp" alt="Mountain sunrise">
+      <div class="cap"><h3>Photography</h3></div>
+    </a>
+    <a class="beyond-tile" href="food.html">
+      <img src="images/ribeye.webp" alt="Ribeye, reverse-seared">
+      <div class="cap"><h3>Food</h3></div>
+    </a>
+  </div>
+  </div>
+</section>
+
+</main>
+
+<section class="fullsec seam" id="contact">
+  <div class="shell">
+  <div class="sec-head"><div class="sec-kicker"><h2>Let's connect</h2></div></div>
+    <p style="color:var(--ink-2);margin-bottom:28px;font-size:1rem">If we share any common interests or you have any questions about my work, I'd love to hear from you.</p>
+  <div class="contact-card">
+
+    <div class="cl">
+      <a href="mailto:araina3@ncsu.edu">araina3@ncsu.edu <span>Email</span></a>
+      <a href="https://www.linkedin.com/in/armaanraina" target="_blank" rel="noopener">/in/armaanraina <span>LinkedIn</span></a>
+      <a href="https://github.com/Armaan-Raina" target="_blank" rel="noopener">@Armaan-Raina <span>GitHub</span></a>
+      <a href="files/Armaan Raina Resume.pdf" target="_blank">Resume.pdf <span>Download</span></a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<script>
+// One-shot, time-based handoff. The first scroll input of any size, or a
+// click, plays the exact same sequence exactly once — both route through
+// the same trigger() call. While it's playing, the page is scroll-locked,
+// so nothing the visitor does can interrupt or restart it. Never touches
+// location.hash/native anchor navigation: doing that previously meant the
+// *next* page load would see "#intro" still in the URL and the browser's
+// own jump-to-fragment behavior would fire the whole thing again
+// instantly, before the visitor had done anything.
+//
+// Two things make the animation itself actually play smoothly rather than
+// snapping to its end state:
+//  1. The splash's reserved 180vh of space is reclaimed (and scroll
+//     compensated for it) at the START of the handoff, not the end — so
+//     nav/hero are genuinely sitting in their true, final position from
+//     frame one. Previously they stayed scrolled ~2 screens below the
+//     viewport for the whole transition, so the "chase" target was
+//     correct in theory but pointed at content that wasn't on screen yet.
+//  2. Declaring a CSS transition and changing the value it's supposed to
+//     animate in the very same tick is a well-known way for browsers to
+//     just skip the animation and jump straight to the end state. A
+//     double requestAnimationFrame forces a real frame boundary between
+//     "the transition is now active" and "here's the new value" so it
+//     reliably plays.
+//
+// If the visitor prefers reduced motion, none of this runs — the splash
+// stays plain `position: sticky` and scrolls away on its own, no
+// animation, no script required.
+(function(){
+  var SS_DONE = 'armaanIntroDone';
+  var SS_SCROLL = 'armaanScrollY';
+
+  // Keep a running record of scroll position for as long as this page is
+  // open, independent of whether the intro has played — so wherever they
+  // were when they clicked into a research page, the back button (or any
+  // link back here) can put them back there instead of at the top.
+  var scrollSaveTimer = null;
+  function saveScroll(){
+    try{ sessionStorage.setItem(SS_SCROLL, String(window.scrollY)); }catch(e){}
+  }
+  window.addEventListener('scroll', function(){
+    if(scrollSaveTimer) return;
+    scrollSaveTimer = setTimeout(function(){ scrollSaveTimer = null; saveScroll(); }, 200);
+  }, {passive:true});
+  window.addEventListener('pagehide', saveScroll);
+
+  var introDone = false;
+  try{ introDone = !!sessionStorage.getItem(SS_DONE); }catch(e){}
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var wrap = document.getElementById('splashWrap');
+  var splash = document.getElementById('splash');
+  var splashArmaan = document.getElementById('splashArmaan');
+  var splashRaina = document.getElementById('splashRaina');
+  var heroInner = document.getElementById('heroInner');
+  var heroArmaan = document.getElementById('heroArmaan');
+
+  if(introDone && wrap && splash){
+    // Already played this session — skip straight to the resting state
+    // (the <html class="intro-done"> rule in <head> already hid the
+    // splash before first paint; this just makes it durable) and restore
+    // wherever they were scrolled to, instead of replaying anything.
+    wrap.style.height = '0px';
+    splash.style.display = 'none';
+    try{
+      var savedY = sessionStorage.getItem(SS_SCROLL);
+      if(savedY !== null){
+        window.scrollTo({top: parseInt(savedY, 10) || 0, left: 0, behavior: 'instant'});
+      }
+    }catch(e){}
+    return;
+  }
+
+  if(reduce || !wrap || !splash || !splashArmaan || !splashRaina || !heroInner || !heroArmaan) return;
+
+  // Hero content starts fully (and instantly — no transition) hidden, so
+  // the very first thing on screen is only the splash, with something
+  // real underneath for the handoff to reveal. CSS defaults to visible,
+  // so a no-JS or reduced-motion visitor never sees this at all.
+  heroInner.style.transition = 'none';
+  heroInner.style.opacity = '0';
+  heroArmaan.style.transition = 'none';
+  heroArmaan.style.opacity = '0';
+
+  var triggered = false;
+
+  function trigger(){
+    if(triggered) return;
+    triggered = true;
+    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('wheel', onWheel);
+    window.removeEventListener('touchmove', onTouchMove);
+    window.removeEventListener('keydown', onKeyDown);
+    splash.removeEventListener('click', onClick);
+    try{ sessionStorage.setItem(SS_DONE, '1'); }catch(e){}
+
+    // Fonts can still be loading on a cold first visit; measuring and
+    // animating against pre-swap metrics is its own way to get a jittery,
+    // wrong-sized landing. In the common case (fonts already loaded by
+    // the time the visitor interacts) this adds zero delay.
+    if(document.fonts && document.fonts.status !== 'loaded'){
+      document.fonts.ready.then(run);
+    } else {
+      run();
+    }
+  }
+
+  function run(){
+    // Locking scroll via overflow:hidden hides the scrollbar, which
+    // widens the viewport by its width — and un-hiding it at the end
+    // narrows the viewport back, shifting anything width-dependent at
+    // that exact moment. Reserving that same width as padding while
+    // locked keeps the effective content width constant the whole time,
+    // so nothing shifts when the lock is released.
+    var scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    var htmlOverflow = document.documentElement.style.overflow;
+    var htmlPaddingRight = document.documentElement.style.paddingRight;
+    document.documentElement.style.overflow = 'hidden';
+    if(scrollbarWidth > 0){
+      document.documentElement.style.paddingRight = scrollbarWidth + 'px';
+    }
+
+    // Pin the splash to its current on-screen position before anything
+    // beneath it moves.
+    var splashRect = splash.getBoundingClientRect();
+    splash.style.position = 'fixed';
+    splash.style.top = splashRect.top + 'px';
+    splash.style.left = '0';
+    splash.style.width = '100%';
+    splash.style.pointerEvents = 'none';
+
+    // Switch Armaan onto its own fixed-size flex box FIRST, then measure
+    // — switching display mode (inline-block to inline-flex) can itself
+    // nudge an element's position by a pixel or two, since the two modes
+    // don't necessarily align to a line of surrounding text the same
+    // way. Measuring before the switch baked that small, consistent
+    // offset into every calculation that followed, which is what showed
+    // up as landing a touch too low and then correcting at the handoff.
+    splashArmaan.style.display = 'inline-flex';
+    splashArmaan.style.alignItems = 'center';
+    splashArmaan.style.justifyContent = 'center';
+    splashArmaan.style.verticalAlign = 'top';
+    splashArmaan.style.whiteSpace = 'nowrap';
+    var armaanRect = splashArmaan.getBoundingClientRect();
+    splashArmaan.style.width = armaanRect.width + 'px';
+    splashArmaan.style.height = armaanRect.height + 'px';
+    // Re-measure once more now that the box itself is pinned, so the
+    // delta math below is based on where it will actually sit, not an
+    // estimate from a moment ago.
+    armaanRect = splashArmaan.getBoundingClientRect();
+
+    // Match every typographic property except size to the real
+    // headline's, right now, before anything is visible — so nothing
+    // about the font itself ever changes, only its size and position.
+    // (This is also why scale() was dropped in favor of animating
+    // font-size directly: scaling a huge glyph down is a GPU bitmap
+    // stretch, not a re-render, and looks visibly different from text
+    // natively rendered at the smaller size — which is what was reading
+    // as "the font changes" right as it landed.)
+    var heroStyle = window.getComputedStyle(heroArmaan);
+    splashArmaan.style.letterSpacing = heroStyle.letterSpacing;
+    splashArmaan.style.lineHeight = heroStyle.lineHeight;
+    splashArmaan.style.fontWeight = heroStyle.fontWeight;
+    var targetFontSize = heroStyle.fontSize;
+
+    // Reclaim the reserved space right now, compensating scroll in the
+    // same call so there's no visible jump — nav and the hero are
+    // genuinely in place from here on, just still covered by the splash.
+    var reduction = wrap.getBoundingClientRect().height;
+    var beforeScroll = window.scrollY;
+    wrap.style.height = '0px';
+    window.scrollTo({top: Math.max(0, beforeScroll - reduction), left: 0, behavior: 'instant'});
+
+    // Now that hero is truly in place, measure where the real "Armaan"
+    // actually sits.
+    var to = heroArmaan.getBoundingClientRect();
+    var dx = (to.left + to.width / 2) - (armaanRect.left + armaanRect.width / 2);
+    var dy = (to.top + to.height / 2) - (armaanRect.top + armaanRect.height / 2);
+
+    // No crossfade. A crossfade means two things are briefly visible at
+    // once — the splash word, still easing toward its target (easing
+    // curves never truly stop moving until their exact declared end,
+    // they just slow down), and the real word, already sitting still at
+    // the destination. Any tiny gap between "where the moving one
+    // currently is" and "where the stationary one actually is" becomes
+    // visible in that overlap, which is what was reading as "gets most
+    // of the way there, then snaps". Instead: the splash word stays
+    // fully opaque for its entire slide, landing pixel-identical to the
+    // real word (same font/size/position, already made exact above) —
+    // so once it's genuinely finished, swapping which one is visible is
+    // imperceptible, no fade needed at all.
+    var MOVE_MS = 1800;
+    var EASE = 'cubic-bezier(.22,.61,.36,1)';
+
+    // The rest of the page starts materializing partway through the
+    // name's slide, not alongside it from the start, and not only once
+    // it's nearly arrived either — this fraction is the one number to
+    // tune: lower = more simultaneous, higher = more sequential. Its
+    // duration is derived from the fraction, not set separately, so the
+    // fade always finishes at exactly the same instant the name lands,
+    // whatever the fraction is.
+    var HERO_START_MS = Math.round(MOVE_MS * 0.2);
+    var HERO_MS = MOVE_MS - HERO_START_MS;
+
+    splashRaina.style.transition = 'opacity .9s ease';
+    splashArmaan.style.transition =
+      'transform ' + (MOVE_MS / 1000) + 's ' + EASE + ', font-size ' + (MOVE_MS / 1000) + 's ' + EASE;
+    heroInner.style.transition = 'opacity ' + (HERO_MS / 500) + 's ease ' + (HERO_START_MS / 500) + 's';
+
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        splashRaina.style.opacity = '0';
+        splashArmaan.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+        splashArmaan.style.fontSize = targetFontSize;
+        heroInner.style.opacity = '1';
+      });
+    });
+
+    // The slide has now genuinely finished — splashArmaan and heroArmaan
+    // are pixel-identical, so this swap is a single, instant,
+    // transition-free handoff with nothing to visibly mismatch.
+    setTimeout(function(){
+      splashArmaan.style.transition = 'none';
+      splashArmaan.style.opacity = '0';
+      heroArmaan.style.transition = 'none';
+      heroArmaan.style.opacity = '1';
+    }, MOVE_MS + 60);
+
+    // HERO_MS is derived above so this and the swap above always finish
+    // at the same instant — no need to pick the later of the two anymore.
+    setTimeout(function(){
+      document.documentElement.style.overflow = htmlOverflow;
+      document.documentElement.style.paddingRight = htmlPaddingRight;
+      splash.style.display = 'none';
+    }, MOVE_MS + 160);
+  }
+
+  // Every input that could natively scroll the page is intercepted and
+  // prevented, with trigger() called in its place — so the animation
+  // never starts from a page that's already been scrolled some
+  // input-dependent amount by the browser's own default behavior. The
+  // plain scroll listener stays only as a fallback for input this
+  // doesn't catch (e.g. dragging the scrollbar thumb directly).
+  var SCROLL_KEYS = {' ':1, 'Spacebar':1, 'PageDown':1, 'PageUp':1,
+    'ArrowDown':1, 'ArrowUp':1, 'End':1, 'Home':1};
+
+  function onScroll(){
+    if(window.scrollY > 0) trigger();
+  }
+  function onClick(e){
+    e.preventDefault();
+    trigger();
+  }
+  function onKeyDown(e){
+    if(!SCROLL_KEYS[e.key]) return;
+    e.preventDefault();
+    trigger();
+  }
+  function onWheel(e){
+    e.preventDefault();
+    trigger();
+  }
+  function onTouchMove(e){
+    e.preventDefault();
+    trigger();
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('wheel', onWheel, {passive:false});
+  window.addEventListener('touchmove', onTouchMove, {passive:false});
+  window.addEventListener('keydown', onKeyDown);
+  splash.addEventListener('click', onClick);
+})();
+
+// Tints the sticky nav to match whichever full-screen section currently
+// sits just below it, so the bar reads as part of that section instead of
+// a fixed cream strip sitting on top of a darkening page. Same opacity
+// (.92) and blur as the default so it's a color swap only.
+(function(){
+  var navEl = document.querySelector('nav');
+  if(!navEl || !window.IntersectionObserver) return;
+
+  var SECTION_BG = {
+    intro: 'rgba(250,249,247,.92)',
+    research: 'rgba(244,241,236,.92)',
+    building: 'rgba(236,231,221,.92)',
+    beyond: 'rgba(228,221,206,.92)',
+    contact: 'rgba(220,210,189,.92)'
+  };
+
+  var navH = navEl.offsetHeight || 66;
+  // Treat a section as "current" once it's crossed just below the nav and
+  // until the next one does the same — a thin band pinned to the top of
+  // the viewport rather than requiring the whole section to be in view.
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var bg = SECTION_BG[entry.target.id];
+        if(bg) navEl.style.background = bg;
+      }
+    });
+  }, {rootMargin: '-' + navH + 'px 0px -60% 0px', threshold: 0});
+
+  Object.keys(SECTION_BG).forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) observer.observe(el);
+  });
+})();
+</script>
+<script src="js/nav.js" defer></script>
 </body>
 </html>
